@@ -4,23 +4,33 @@
   imports =
     [ 
       /etc/nixos/hardware-configuration.nix
+#      /home/mikejohnp/nixos-dotfiles/custom.nix
     ];
 
-  virtualisation.vmware.guest.enable = true;
+  # virtualisation.vmware.guest.enable = true;
+
+  # fix ratio with vm
+  services.vmwareGuest.enable = true;
+  services.vmwareGuest.headless = false;
+  services.xserver.videoDrivers = [ "vmware" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  networking.hostName = "nixos-btw"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.hostName = "nixos-btw";
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
 
   services.xserver = {
   	enable = true;
-	autoRepeatDelay = 200;
-	autoRepeatInterval = 35;
-	windowManager.qtile.enable = true;
+    # autoRepeatDelay = 200;
+    # autoRepeatInterval = 35;
+    windowManager.qtile.enable = true;
+    xkb.layout = "us";
+    xkb.variant = "";
+
+    xkbOptions = "ctrl:nocaps";
   };
   services.displayManager.ly.enable = true;
 
@@ -38,24 +48,11 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
 
   users.users.mikejohnp = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      tree
     ];
   };
 
@@ -64,6 +61,11 @@
  environment.systemPackages = with pkgs; [
    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
    wget
+   tree
+   gh
+   gcc
+   home-manager
+   open-vm-tools
    git
    alacritty
  ];
@@ -74,6 +76,8 @@
  ];
  
  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+ services.openssh.enable = true;
 
  system.stateVersion = "25.05";
 

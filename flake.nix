@@ -20,7 +20,7 @@
 					home-manager = {
 						useGlobalPkgs = true;
 						useUserPackages = true;
-						users.mikejohnp = import ./home.nix;
+						users.mikejohnp = import /home/mikejohnp/nixos-dotfiles/home.nix;
 						backupFileExtension = "backup";
 					};
 				}
