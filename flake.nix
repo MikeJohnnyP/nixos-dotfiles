@@ -2,11 +2,12 @@
 	description = "NixOs from scratch MikeJohnP";
 
 	inputs = {
-		nixpkgs.url = "nixpkgs/nixos-25.05";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 		home-manager = {
-			url = "github:nix-community/home-manager/release-25.05";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+      		url = "github:nix-community/home-manager/master";
+      		inputs.nixpkgs.follows = "nixpkgs";
+    	};
+		nixos-hardware.url = "github:NixOS/nixos-hardware";
 	};
 	outputs = { self, nixpkgs, home-manager, ...} @inputs:
 	let
@@ -31,7 +32,7 @@
 				pkgs = nixpkgs.legacyPackages.x86_64-linux;
 				extraSpecialArgs = { inherit inputs; };
 				modules = [
-					./users/vmdev/home.nix
+					./users/vm-dev/home.nix
 				];
           	};
 		};

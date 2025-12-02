@@ -12,7 +12,7 @@
     enable = true;
     headless = false;
   };
-  services.xserver.videoDrivers = [ "vmware" ];
+  # services.xserver.videoDrivers = [ "vmware" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -21,24 +21,32 @@
 
   # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
 
-  # Hoặc nếu dùng NetworkManager
+  # Hoặc nếu dùng NetworkManagerg
   networking.networkmanager.dns = "none";
   networking.resolvconf.enable = false;  # tắt resolvconf của NM
 
   time.timeZone = "Asia/Ho_Chi_Minh";
+
+  nix = {
+    package = pkgs.nixVersions.stable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
 
   services.xserver = {
   	enable = true;
     # autoRepeatDelay = 200;
     # autoRepeatInterval = 35;
-    windowManager.qtile.enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-
     xkb.options = "ctrl:nocaps";
   };
-  services.displayManager.ly.enable = true;
+
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.defaultSession = "none+i3";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -65,16 +73,14 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
  environment.systemPackages = with pkgs; [
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+   vim
    wget
    tree
    gh
    gcc
-   vscode
    home-manager
    open-vm-tools
    git
-   alacritty
  ];
  fonts.fontDir.enable = true;
 
