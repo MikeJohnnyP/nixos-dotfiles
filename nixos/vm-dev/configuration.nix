@@ -48,6 +48,15 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
 
+  # transparent i3
+  services.picom = {
+    enable = true;
+    settings = {
+      rounded-corners = true;
+      corner-radius = 15;
+    };
+  };
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -73,14 +82,14 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-     vim
-     wget
-     tree
-     gh
-     gcc
-     home-manager
-     open-vm-tools
-     git
+   vim
+   wget
+   tree
+   gh
+   gcc
+   home-manager
+   open-vm-tools
+   git
  ];
  fonts.fontDir.enable = true;
 
@@ -91,7 +100,7 @@
  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
  services.openssh.enable = true;
- 
+
  system.stateVersion = "25.05";
 
 }
