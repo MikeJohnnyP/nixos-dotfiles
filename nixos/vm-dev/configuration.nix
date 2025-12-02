@@ -22,8 +22,8 @@
   # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
 
   # Hoặc nếu dùng NetworkManager
-  #networking.networkmanager.dns = "none";
-  #networking.resolvconf.enable = false;  # tắt resolvconf của NM
+  networking.networkmanager.dns = "none";
+  networking.resolvconf.enable = false;  # tắt resolvconf của NM
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 

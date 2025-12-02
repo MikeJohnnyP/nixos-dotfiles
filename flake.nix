@@ -6,26 +6,34 @@
 		home-manager = {
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
-
 		};
 	};
-
-	outputs = { self, nixpkgs, home-manager, ...}: {
-		nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
-			system = "x86_64-linux";
-			modules = [
+	outputs = { self, nixpkgs, home-manager, ...} @inputs:
+	let
+		mkNixosConfig =
+        system: extraModules:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs system; };
+          modules = extraModules;
+        };
+	in
+	{
+		nixosConfigurations = {
+			nixos-btw = mkNixosConfig "x86_64-linux" [
 				./nixos/vm-dev/configuration.nix
-				home-manager.nixosModules.home-manager
-				{
-					home-manager = {
-						useGlobalPkgs = true;
-						useUserPackages = true;
-						users.mikejohnp = import ./users/vm-dev/home.nix;
-						backupFileExtension = "backup";
-					};
-				}
 			];
+		};
 
+		homeConfigurations = {
+			"nixos-btw" = home-manager.lib.homeManagerConfiguration
+          	{
+				pkgs = nixpkgs.legacyPackages.x86_64-linux;
+				extraSpecialArgs = { inherit inputs; };
+				modules = [
+					./users/vmdev/home.nix
+				];
+          	};
 		};
 
 	};
