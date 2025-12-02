@@ -4,6 +4,8 @@
 	imports = [
     	../../modules/home-manager/default.nix
 		../../modules/home-manager/i3-wm.nix
+		../../modules/home-manager/firefox.nix
+		./lang.nix
   	];
 
 	home.username = "mikejohnp";
@@ -33,13 +35,13 @@
 		ripgrep
 		nil
 		nixpkgs-fmt
-		nodejs
 		alacritty
 		ghostty
 		fastfetch
 		vscode
-    dmenu
-    feh
+    	dmenu
+    	feh
+		nerd-fonts.jetbrains-mono
 	];
 
   home.sessionVariables = {
