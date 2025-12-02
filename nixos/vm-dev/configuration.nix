@@ -72,15 +72,15 @@
 
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
- environment.systemPackages = with pkgs; [
-   vim
-   wget
-   tree
-   gh
-   gcc
-   home-manager
-   open-vm-tools
-   git
+  environment.systemPackages = with pkgs; [
+     vim
+     wget
+     tree
+     gh
+     gcc
+     home-manager
+     open-vm-tools
+     git
  ];
  fonts.fontDir.enable = true;
 
@@ -91,7 +91,7 @@
  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
  services.openssh.enable = true;
-
+ 
  system.stateVersion = "25.05";
 
 }
