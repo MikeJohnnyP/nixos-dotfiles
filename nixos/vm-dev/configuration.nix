@@ -4,7 +4,7 @@
   imports =
     [ 
       /etc/nixos/hardware-configuration.nix
-#      /home/mikejohnp/nixos-dotfiles/custom.nix
+      ./custom.nix
     ];
 
   # fix ratio with vm
