@@ -7,17 +7,23 @@
 #      /home/mikejohnp/nixos-dotfiles/custom.nix
     ];
 
-  # virtualisation.vmware.guest.enable = true;
-
   # fix ratio with vm
-  services.vmwareGuest.enable = true;
-  services.vmwareGuest.headless = false;
+  virtualisation.vmware.guest = {
+    enable = true;
+    headless = false;
+  };
   services.xserver.videoDrivers = [ "vmware" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "nixos-btw";
   networking.networkmanager.enable = true;
+
+  # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
+
+  # Hoặc nếu dùng NetworkManager
+  #networking.networkmanager.dns = "none";
+  #networking.resolvconf.enable = false;  # tắt resolvconf của NM
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -30,7 +36,7 @@
     xkb.layout = "us";
     xkb.variant = "";
 
-    xkbOptions = "ctrl:nocaps";
+    xkb.options = "ctrl:nocaps";
   };
   services.displayManager.ly.enable = true;
 
@@ -57,13 +63,14 @@
   };
 
   programs.firefox.enable = true;
-
+  nixpkgs.config.allowUnfree = true;
  environment.systemPackages = with pkgs; [
    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
    wget
    tree
    gh
    gcc
+   vscode
    home-manager
    open-vm-tools
    git

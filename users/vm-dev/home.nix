@@ -20,8 +20,10 @@
 			btw = "echo I use nixos, btw";
 		};
 	};
-	home.file.".config/qtile".source = ./config/qtile;
-	home.file.".config/nvim".source = ./config/nvim;
+
+  programs.vscode.enable = true;
+	home.file.".config/qtile".source = ../../config/qtile;
+	home.file.".config/nvim".source = ../../config/nvim;
 	
 	home.packages = with pkgs; [
 		neovim

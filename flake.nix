@@ -14,13 +14,13 @@
 		nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
 			system = "x86_64-linux";
 			modules = [
-				./configuration.nix
+				./nixos/vm-dev/configuration.nix
 				home-manager.nixosModules.home-manager
 				{
 					home-manager = {
 						useGlobalPkgs = true;
 						useUserPackages = true;
-						users.mikejohnp = import /home/mikejohnp/nixos-dotfiles/home.nix;
+						users.mikejohnp = import ./users/vm-dev/home.nix;
 						backupFileExtension = "backup";
 					};
 				}
