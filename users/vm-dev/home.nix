@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+	imports = [
+    	../../modules/home-manager/default.nix
+  	];
+
 	home.username = "mikejohnp";
 	home.homeDirectory = "/home/mikejohnp";
 	programs.git = {
@@ -14,14 +18,10 @@
     };
   };
 	home.stateVersion = "25.05";
-	programs.bash = {
-		enable = true;
-		shellAliases = {
-			btw = "echo I use nixos, btw";
-		};
-	};
 
-  programs.vscode.enable = true;
+	within.zsh.enable = true;
+	
+  	programs.vscode.enable = true;
 	home.file.".config/qtile".source = ../../config/qtile;
 	home.file.".config/nvim".source = ../../config/nvim;
 	
@@ -33,4 +33,7 @@
 		nodejs
 		gcc
 	];
+
+	# Let Home Manager install and manage itself.
+  	programs.home-manager.enable = true;
 }

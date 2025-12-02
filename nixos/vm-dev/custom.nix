@@ -22,10 +22,19 @@
     pkgs.lazydocker
     pkgs.tlrc  
   ];
+
+  programs.zsh = {
+		enable = true;
+		shellAliases = {
+			btw = "echo I use nixos, btw";
+		};
+	};
+
+	users.defaultUserShell = pkgs.zsh;
   
   virtualisation.docker.enable = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
-  boot.loader.systemd-boot.configurationLimit = 5;
+  # boot.loader.systemd-boot.configurationLimit = 5;
 
   # Garbage Collector Setting
   #nix.gc.automatic = true;
