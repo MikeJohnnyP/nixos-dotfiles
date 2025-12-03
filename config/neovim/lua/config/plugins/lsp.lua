@@ -188,7 +188,7 @@ return
 		opts = {
 			auto_install = true,
 			-- manually install packages that do not exist in this list please
-			ensure_installed = { "ts_ls" },
+			ensure_installed = { "ts_ls", "jdtls" },
 		},
 	},
 	{
@@ -325,6 +325,12 @@ return
 				local symbols = symbols_map[filetype] or "function"
 				require("fzf-lua").lsp_document_symbols({ symbols = symbols })
 			end, {})
+			vim.api.nvim_create_autocmd('FileType', {
+				pattern = 'java',
+				callback = function(args)
+					require'jdtls.jdtls_setup'.setup()
+				end
+			})
 		end,
 	},
 

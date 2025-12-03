@@ -10,7 +10,11 @@ in
     # Node.js
     nodejs_latest
     #jdk21
-    jdk21_headless
+    jdk21
+    #maven
+    maven
+    #gradle
+    gradle
   ];
 
   home.sessionVariables = {
@@ -23,5 +27,10 @@ in
     # Java 21
     JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
 
+    # Gradle home 
+    GRADLE_HOME="${pkgs.gradle}/lib/gradle";
+
+    # Maven home
+    MVN_HOME="${pkgs.maven}/maven";
   };
 }

@@ -42,7 +42,7 @@ in
                 "${mod}+1" = "workspace 1";
                 "${mod}+Shift+b" = "move container to workspace b";
                 "${mod}+Shift+1" = "move container to workspace 1";
-                "${mod}+Shift+n" = "exec --no-startup-id feh --no-fehbg --randomize --bg-scale $HOME/nixos-dotfiles/config/bg/";
+                "${mod}+Shift+n" = "exec --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/nixos-dotfiles/config/bg/";
                 "${mod}+Shift+i" = "exec --no-startup-id bash $HOME/nixos-dotfiles/config/dmenu/info.sh";
                 # "${mod}+Shift+minus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 1920px 1080px && i3-msg move position center && i3-msg move scratchpad'";
                 "${mod}+Shift+minus" = "exec --no-startup-id i3-msg '[con_id=\"__focused__\"] move container to workspace current' , scratchpad show";

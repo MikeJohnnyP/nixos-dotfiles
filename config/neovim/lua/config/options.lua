@@ -1,4 +1,4 @@
-vim.o.shell = "powershell.exe -nologo"
+# vim.o.shell = "powershell.exe -nologo"
 vim.o.hlsearch = true                          -- Set highlight on search
 vim.wo.number = true                           -- Make line numbers default
 vim.o.mouse = 'a'                              -- Enable mouse mode
@@ -51,3 +51,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
+--disable netrrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+

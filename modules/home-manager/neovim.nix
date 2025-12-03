@@ -25,6 +25,7 @@ in
       pkgs.nodePackages_latest.vscode-json-languageserver
       pkgs.lua-language-server
       pkgs.luajitPackages.jsregexp
+      # pkgs.jdt-language-server
       pkgs.nil
       # pkgs.gopls
       # pkgs.gofumpt
