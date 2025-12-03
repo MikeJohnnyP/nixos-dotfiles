@@ -2,11 +2,12 @@
 
 {
 	imports = [
-    	../../modules/home-manager/default.nix
-		../../modules/home-manager/i3-wm.nix
-		../../modules/home-manager/firefox.nix
-		../../modules/home-manager/zathura.nix
-		../../modules/home-manager/vscode.nix
+    	./../../modules/home-manager/default.nix
+		./../../modules/home-manager/i3-wm.nix
+		./../../modules/home-manager/firefox.nix
+		./../../modules/home-manager/zathura.nix
+		./../../modules/home-manager/vscode.nix
+		./../../modules/home-manager/neovim.nix
 		./lang.nix
   	];
 
@@ -26,13 +27,13 @@
 
 	within.zsh.enable = true;
 	within.ghostty.enable = true;
+	within.neovim.enable = true;
 
 	nixpkgs.config.allowUnfree = true;
 	
-	home.file.".config/nvim".source = ../../config/nvim;
+	# home.file.".config/nvim".source = ../../config/nvim;
 
 	home.packages = with pkgs; [
-		neovim
 		ripgrep
 		nil
 		nixpkgs-fmt
