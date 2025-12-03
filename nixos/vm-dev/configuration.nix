@@ -52,8 +52,8 @@
   services.picom = {
     enable = true;
     settings = {
-      rounded-corners = true;
-      corner-radius = 15;
+      # rounded-corners = true;
+      # corner-radius = 15;
     };
   };
 

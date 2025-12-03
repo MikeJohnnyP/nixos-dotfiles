@@ -9,8 +9,8 @@ in
             modifier = mod;
             bars = [ ];
             gaps = {
-                inner = 2;
-                outer = 1;
+                inner = 4;
+                outer = 3;
             };
             terminal = "ghostty";
             keybindings = lib.mkOptionDefault {
@@ -18,8 +18,8 @@ in
                 "${mod}+Shift+f" = "exec firefox";
                 "${mod}+Shift+d" = "exec zathura";
                 "${mod}+Shift+t" = "exec --no-startup-id bash $HOME/.config/zathura/change-theme.bash";
-                # "${mod}+Shift+plus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 1280px 1350px && i3-msg move position center && i3-msg move scratchpad'";
-                "${mod}+Shift+plus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 70 ppt 94 ppt && i3-msg move position center && i3-msg move scratchpad'";
+                "${mod}+Shift+plus"  = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 1280px 1350px && i3-msg move position center && i3-msg move scratchpad'";
+                # "${mod}+Shift+plus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 70 ppt 94 ppt && i3-msg move position center && i3-msg move scratchpad'";
                 "${mod}+Shift+e" = "kill";
                 "${mod}+Shift+w" = "exec i3-msg exit";
                 "${mod}+r" = "restart";
@@ -44,7 +44,8 @@ in
                 "${mod}+Shift+1" = "move container to workspace 1";
                 "${mod}+Shift+n" = "exec --no-startup-id feh --no-fehbg --randomize --bg-scale $HOME/nixos-dotfiles/config/bg/";
                 "${mod}+Shift+i" = "exec --no-startup-id bash $HOME/nixos-dotfiles/config/dmenu/info.sh";
-                "${mod}+Shift+minus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 1920px 1080px && i3-msg move position center && i3-msg move scratchpad'";
+                # "${mod}+Shift+minus" = "exec i3-msg scratchpad show || bash -c 'i3-msg floating enable && i3-msg resize set 1920px 1080px && i3-msg move position center && i3-msg move scratchpad'";
+                "${mod}+Shift+minus" = "exec --no-startup-id i3-msg '[con_id=\"__focused__\"] move container to workspace current' , scratchpad show";
             };
         };
         extraConfig = ''

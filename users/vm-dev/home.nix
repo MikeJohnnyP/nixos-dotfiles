@@ -5,6 +5,7 @@
     	../../modules/home-manager/default.nix
 		../../modules/home-manager/i3-wm.nix
 		../../modules/home-manager/firefox.nix
+		../../modules/home-manager/zathura.nix
 		./lang.nix
   	];
 
