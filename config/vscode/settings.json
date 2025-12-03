@@ -1,0 +1,748 @@
+{
+  "editor.suggest.insertMode": "replace",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font',Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
+  "editor.linkedEditing": true,
+  "breadcrumbs.enabled": true,
+  "update.showReleaseNotes": false,
+  "zenMode.hideLineNumbers": false,
+  "explorer.confirmDelete": false,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.tabCompletion": "off",
+  "editor.wordBasedSuggestions": "off",
+  "editor.suggest.showWords": false,
+  "workbench.list.smoothScrolling": false,
+  // "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, SortIncludes: false}",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Microsoft,IndentWidth: 4, ColumnLimit: 0, SortIncludes: false}",
+  "C_Cpp.errorSquiggles": "enabledIfIncludesResolve",
+  "C_Cpp.formatting": "clangFormat",
+  "C_Cpp.enhancedColorization": "enabled",
+  "C_Cpp.intelliSenseEngineFallback": "enabled",
+  "C_Cpp.default.intelliSenseMode": "windows-clang-x64",
+  "C_Cpp.default.cppStandard": "c++17",
+  "vim.leader": "<Space>",
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.autoindent": true,
+  "vim.timeout": 200,
+  "vim.handleKeys": {
+    "<C-d>": true,
+    "<C-s>": false,
+    "<C-z>": false,
+    "<C-p>": false
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // NAVIGATION
+    // switch b/w buffers
+    {
+      "before": [
+        "<S-h>"
+      ],
+      "commands": [
+        ":bprevious",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "<S-l>"
+      ],
+      "commands": [
+        ":bnext",
+        "extension.vim_escape"
+      ]
+    },
+    // splits
+    {
+      "before": [
+        "leader",
+        "v"
+      ],
+      "commands": [
+        "workbench.action.newGroupRight"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.newGroupBelow"
+      ]
+    },
+    // panes
+    {
+      "before": [
+        "leader",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.focusLeftGroup",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "j"
+      ],
+      "commands": [
+        "workbench.action.focusBelowGroup",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.focusAboveGroup",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.focusRightGroup",
+        "extension.vim_escape"
+      ]
+    },
+    // NICE TO HAVE
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "commands": [
+        ":wa!"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "q"
+      ],
+      "commands": [
+        ":q!"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "x"
+      ],
+      "commands": [
+        ":x!"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.prev"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "d"
+      ],
+      "commands": [
+        "editor.action.marker.next"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "a"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "p"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "editor.action.showDefinitionPreviewHover"
+      ]
+    },
+    // hack command vim
+    {
+      "before": [
+        "p"
+      ],
+      "commands": [
+        "editor.action.clipboardPasteAction",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "d"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "D"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "D"
+      ]
+    },
+    {
+      "before": [
+        "d",
+        "d"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "d",
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "c"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "c"
+      ]
+    },
+    {
+      "before": [
+        "C"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "C"
+      ]
+    },
+    {
+      "before": [
+        "x"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "x"
+      ]
+    },
+    {
+      "before": [
+        "u"
+      ],
+      "commands": [
+        "undo"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    // set move view center of row
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "j",
+        "z",
+        "z"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "k",
+        "z",
+        "z"
+      ]
+    },
+    // set fast move 5 row
+    // { "before": ["J"], "after": ["5", "j", "z", "z"] },
+    // { "before": ["K"], "after": ["5", "k", "z", "z"] }
+    {
+      "before": [
+        "J"
+      ],
+      "after": [
+        "<C-d>",
+        "z",
+        "z"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        "<C-u>",
+        "z",
+        "z"
+      ]
+    },
+    // set insert line break
+    // {
+    //   "before": ["<S-n>"],
+    //   "commands": ["lineBreakInsert"],
+    //   "silent": true
+    // }
+    {
+      "before": [
+        "z",
+        "j"
+      ],
+      "after": [
+        "o",
+        "<Esc>"
+      ]
+    },
+    {
+      "before": [
+        "z",
+        "k"
+      ],
+      "after": [
+        "O",
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>",
+        "l"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    // Move selected lines while staying in visual mode
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
+      ]
+    },
+    {
+      "before": [
+        "J"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    // toggle comment selection
+    {
+      "before": [
+        "leader",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "X"
+      ],
+      "commands": [
+        "editor.action.clipboardCutAction",
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": [
+        "y"
+      ],
+      "commands": [
+        "editor.action.clipboardCopyAction",
+        "extension.vim_escape"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "x"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "x"
+      ]
+    }
+  ],
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "window.zoomLevel": 0,
+  "workbench.layoutControl.enabled": false,
+  "github.copilot.chat.scopeSelection": true,
+  "git.openRepositoryInParentFolders": "never",
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "same",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.codeLens": false,
+  "editor.folding": true,
+  "editor.glyphMargin": true,
+  "editor.formatOnSave": true,
+  "editor.hover.enabled": true,
+  "editor.colorDecorators": true,
+  "editor.cursorBlinking": "solid",
+  "editor.renderWhitespace": "none",
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "window.customTitleBarVisibility": "windowed",
+  "window.titleBarStyle": "custom",
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
+  "scm.diffDecorations": "none",
+  "editor.suggestOnTriggerCharacters": false,
+  "workbench.editor.revealIfOpen": true,
+  "workbench.tree.renderIndentGuides": "none",
+  "editor.renderControlCharacters": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.rulers": [],
+  "prettier.singleQuote": true,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.renderLineHighlight": "none",
+  // "editor.lineNumbers": "relative",
+  "editor.bracketPairColorization.enabled": false,
+  "editor.fontSize": 16,
+  "editor.fontVariations": true,
+  // "editor.fontWeight": "normal",
+  // "editor.letterSpacing": 0.5,
+  "editor.lineHeight": 1.6,
+  // "editor.fontLigatures": "'ss02', 'ss03', 'ss19', 'ss20'",
+  // "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'ss19'",
+  // "editor.fontLigatures": "'cv09,'ss01'",
+  // "editor.fontLigatures": "'cv01'",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontWeight": "normal",
+  // "terminal.integrated.fontWeightBold": "bold",
+  "terminal.integrated.drawBoldTextInBrightColors": false,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.minimumContrastRatio": 1,
+  "editor.stickyScroll.enabled": false,
+  "zenMode.centerLayout": false,
+  "zenMode.fullScreen": false,
+  "zenMode.showTabs": "none",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.tabSizing": "fit",
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.showIcons": true,
+  "problems.decorations.enabled": false,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.guides.bracketPairsHorizontal": false,
+  "editor.guides.bracketPairs": false,
+  "editor.guides.indentation": true,
+  "editor.guides.highlightActiveBracketPair": false,
+  "editor.guides.highlightActiveIndentation": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.scrollbar.horizontal": "auto",
+  "editor.scrollbar.vertical": "auto",
+  "editor.smoothScrolling": false,
+  "editor.scrollbar.verticalScrollbarSize": 14,
+  "hexeditor.columnWidth": 14,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside",
+  "css.styleSheets": [
+    "node_modules/bootstrap/dist/css/bootstrap.css",
+    "src/**/*.scss"
+  ],
+  "css.enabledLanguages": [
+    "html",
+    "vue",
+    "typescript"
+  ],
+  "notebook.lineNumbers": "on",
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "mssql.connections": [
+    {
+      "profileName": "FOOBARDEV",
+      "authenticationType": "Integrated",
+      "trustServerCertificate": true,
+      "server": "JOHNMIKEP",
+      "id": "74B2EA51-E975-493A-ADB3-9C29734598EB",
+      "groupId": "941ECA73-803A-4BC4-9295-5632B31E7527"
+    }
+  ],
+  "editor.semanticHighlighting.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "[Gruvbox DrakenLords Dark]": {
+      "enabled": true
+    },
+    "[Gruvchad]": {
+      "enabled": true
+    },
+    "[Handmade Dark]": {
+      "enabled": true
+    },
+    "[Catppuccin Macchiato]": {
+      "enabled": true
+    },
+    "[Catppuccin Mocha]": {
+      "enabled": true
+    },
+    "[j_blow]": {
+      "enabled": true
+    }
+  },
+  "editor.parameterHints.enabled": true,
+  "accessibility.dimUnfocused.enabled": false,
+  "accessibility.dimUnfocused.opacity": 0.75,
+  "workbench.colorCustomizations": {
+    "[j_blow]": {
+      "statusBar.border": "default",
+      "statusBar.background": "#031c1f",
+      "statusBar.noFolderBackground": "#005f5f",
+      "statusBar.debuggingBackground": "#005f5f",
+      "statusBar.foreground": "#ffffff",
+      "statusBar.debuggingForeground": "#ffffff",
+      "scrollbarSlider.background": "#005f5f"
+    },
+    "[Handmade Dark]": {
+      "editorSuggestWidget.highlightForeground": "#CD9731",
+      "editorSuggestWidget.focusHighlightForeground": "#CD9731",
+      "editorSuggestWidget.border": "#cdaa7d",
+      "editorSuggestWidget.background": "#161616",
+      "breadcrumb.foreground": "#bdb395",
+      "statusBar.foreground": "#bdb395",
+      "panelTitle.activeForeground": "#bdb395",
+      "panelSection.border": "#bdb395",
+      "panel.dropBorder": "#bdb395",
+      "panelTitle.activeBorder": "#cd950c",
+      "terminal.foreground": "#bdb395",
+      "menu.background": "#161616",
+      "menu.border": "#cdaa7d",
+      "quickInput.background": "#161616",
+      "quickInput.foreground": "#bdb395",
+      "quickInputTitle.background": "#161616"
+    }
+  },
+  "window.title": "",
+  "breadcrumbs.icons": false,
+  "breadcrumbs.showArrays": false,
+  "breadcrumbs.showBooleans": false,
+  "breadcrumbs.showClasses": false,
+  "breadcrumbs.showConstants": false,
+  "breadcrumbs.showConstructors": false,
+  "breadcrumbs.showEnumMembers": false,
+  "breadcrumbs.showEnums": false,
+  "breadcrumbs.showEvents": false,
+  "breadcrumbs.showFields": false,
+  "breadcrumbs.showFiles": false,
+  "breadcrumbs.showFunctions": false,
+  "breadcrumbs.showInterfaces": false,
+  "breadcrumbs.showMethods": false,
+  "breadcrumbs.showKeys": false,
+  "breadcrumbs.showModules": false,
+  "breadcrumbs.showNamespaces": false,
+  "breadcrumbs.showNull": false,
+  "breadcrumbs.showNumbers": false,
+  "breadcrumbs.showObjects": false,
+  "breadcrumbs.showOperators": false,
+  "breadcrumbs.showPackages": false,
+  "breadcrumbs.showProperties": false,
+  "breadcrumbs.showStrings": false,
+  "breadcrumbs.showStructs": false,
+  "breadcrumbs.showVariables": false,
+  "breadcrumbs.showTypeParameters": false,
+  "catppuccin.accentColor": "rosewater",
+  "catppuccin.boldKeywords": true,
+  "catppuccin.bracketMode": "neovim",
+  "catppuccin.workbenchMode": "default",
+  "catppuccin.italicKeywords": true,
+  "editor.minimap.renderCharacters": false,
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.configureOnOpen": true,
+  "cmake.showConfigureWithDebuggerNotification": false,
+  "cmake.options.statusBarVisibility": "compact",
+  "editor.minimap.enabled": true,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "workbench.startupEditor": "none",
+  "redhat.telemetry.enabled": true,
+  "window.density.editorTabHeight": "compact",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "lldb.suppressUpdateNotifications": true,
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "remote.SSH.remotePlatform": {
+    "MikeJohnP": "linux",
+    "cnpm": "linux",
+    "bigscore": "linux",
+    "152.42.216.253": "linux",
+    "steamDB": "linux"
+  },
+  "markdown-preview-enhanced.revealjsTheme": "black.css",
+  "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+  "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+  "intelephense.phpdoc.functionTemplate": {
+    "summary": "$1",
+    "tags": [
+      "@param ${1:$SYMBOL_TYPE} $SYMBOL_NAME $2",
+      "@return ${1:$SYMBOL_TYPE} $2",
+      "@throws ${1:$SYMBOL_TYPE} $2"
+    ]
+  },
+  "intelephense.files.associations": [
+    "*.php",
+    "*.phtml"
+  ],
+  "php.validate.executablePath": "C:/Users/MikeJohnP/.config/herd-lite/bin/php.exe",
+  "editor.formatOnPaste": true,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.autoSave": "onFocusChange",
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "941ECA73-803A-4BC4-9295-5632B31E7527"
+    }
+  ],
+  "gitlens.graph.dateFormat": null,
+  "gitlens.graph.minimap.enabled": false,
+  "workbench.colorTheme": "Maple Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "ui"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "ui:\\s*{([^)]*)\\s*}",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
+  ],
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "window.menuBarVisibility": "toggle",
+  "python.languageServer": "Pylance",
+  "window.commandCenter": false,
+  "chat.commandCenter.enabled": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  // "php.debug.executablePath": "D:\\wamp64\\bin\\php\\php8.3.14\\php.exe",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "blade": false,
+    "scss": true,
+    "php": false,
+    "python": false
+  },
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "*.cs": "${capture}.designer.cs,${capture}.g.cs,${capture}.generated.cs,${capture}.run.json,${capture}.settings.json,${capture}.settings.*.json",
+    "*.csproj": "${capture}.csproj.user",
+    "*.json": "${capture}.Development.json",
+    "*.cshtml": "${capture}.cshtml.cs,${capture}.cshtml.css",
+    "*.razor": "${capture}.razor.cs,${capture}.razor.css",
+    "*.resx": "${capture}.Designer.cs",
+    "*.xaml": "${capture}.xaml.cs",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "workbench.activityBar.location": "default",
+  "workbench.secondarySideBar.defaultVisibility": "visible"
+}

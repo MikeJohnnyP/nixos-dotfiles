@@ -6,6 +6,7 @@
 		../../modules/home-manager/i3-wm.nix
 		../../modules/home-manager/firefox.nix
 		../../modules/home-manager/zathura.nix
+		../../modules/home-manager/vscode.nix
 		./lang.nix
   	];
 
@@ -28,7 +29,6 @@
 
 	nixpkgs.config.allowUnfree = true;
 	
-  	programs.vscode.enable = true;
 	home.file.".config/nvim".source = ../../config/nvim;
 
 	home.packages = with pkgs; [
@@ -39,7 +39,6 @@
 		alacritty
 		ghostty
 		fastfetch
-		vscode
     	dmenu
     	feh
 		nerd-fonts.jetbrains-mono
