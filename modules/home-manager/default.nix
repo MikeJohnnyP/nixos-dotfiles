@@ -4,6 +4,7 @@
 {
   imports = [
     ./zsh.nix
-    ./ghostty.nix
+    ./ghostty.nix 
+    ./tmux.nix
   ];
 }
