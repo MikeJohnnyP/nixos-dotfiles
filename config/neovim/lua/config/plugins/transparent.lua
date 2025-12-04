@@ -1,0 +1,30 @@
+return {
+	"xiyaowong/transparent.nvim",
+	event = "VimEnter",
+	config = function()
+		require("transparent").setup({
+			enable = true,
+			extra_groups = {
+				"NormalFloat",
+				"FloatBorder",
+				"FloatTitle",
+				"TelescopeNormal",
+				-- "LualineNormal",
+				"TelescopeBorder",
+				"TelescopePromptNormal",
+				"TelescopeResultsNormal",
+				"TelescopePreviewNormal",
+
+			},
+		})
+		-- require("transparent").clear_prefix("lualine")
+		require("transparent").clear_prefix("NeoTree")
+		-- depends on pc, these settings are needed
+		vim.cmd("highlight Lualine guibg=NONE")
+		vim.cmd("highlight Lualine guifg=NONE")
+		vim.cmd("highlight Normal guibg=NONE")
+		vim.cmd("highlight NormalNC guibg=NONE")
+		vim.cmd("highlight CursorLine guibg=NONE")
+	end,
+
+}

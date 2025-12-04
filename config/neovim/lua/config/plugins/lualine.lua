@@ -39,7 +39,6 @@ return {
 		-- 	symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
 		-- 	cond = hide_in_width,
 		-- }
-
 		require('lualine').setup {
 			options = {
 				icons_enabled = true,

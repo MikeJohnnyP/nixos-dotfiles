@@ -1,6 +1,7 @@
 [env]
 TERM = "xterm-256color"
 
+
 [window]
 # padding = { x = 10, y = 10 }
 decorations = "none"
@@ -24,37 +25,83 @@ style = "Italic"
 style = "Bold Italic"
 
 # ────────────────────── CATPPUCCIN MOCHA (2025) ──────────────────────
+# [colors.primary]
+# background = "#1e1e2e"
+# foreground = "#cdd6f4"
+#
+# [colors.cursor]
+# text = "#1e1e2e"
+# cursor = "#f5e0dc"    # rosewater
+#
+# [colors.selection]
+# text = "CellForeground"
+# background = "#585b70"
+#
+# [colors.normal]
+# black   = "#45475a"
+# red     = "#f38ba8"
+# green   = "#a6e3a1"
+# yellow  = "#f9e2af"
+# blue    = "#89b4fa"
+# magenta = "#cba6f7"
+# cyan    = "#94e2d5"
+# white   = "#bac2de"
+#
+# [colors.bright]
+# black   = "#585b70"
+# red     = "#f38ba8"
+# green   = "#a6e3a1"
+# yellow  = "#f9e2af"
+# blue    = "#89b4fa"
+# magenta = "#cba6f7"
+# cyan    = "#94e2d5"
+# white   = "#a6adc8"
+#
+# -----------------------------------------------------------------------------
+# Kanagawa Paper Ink
+# Upstream: https://github.com/thesimonho/kanagawa-paper.nvim/master/extras/alacritty/kanagawa-paper-ink.toml
+# URL: https://github.com/alacritty/alacritty
+# -----------------------------------------------------------------------------
+
 [colors.primary]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
+background = '#1F1F28'
+foreground = '#DCD7BA'
 
 [colors.cursor]
-text = "#1e1e2e"
-cursor = "#f5e0dc"    # rosewater
+cursor = '#c4b28a'
+text = '#1F1F28'
 
 [colors.selection]
-text = "CellForeground"
-background = "#585b70"
+background = '#363646'
+foreground = '#9e9b93'
 
 [colors.normal]
-black   = "#45475a"
-red     = "#f38ba8"
-green   = "#a6e3a1"
-yellow  = "#f9e2af"
-blue    = "#89b4fa"
-magenta = "#cba6f7"
-cyan    = "#94e2d5"
-white   = "#bac2de"
+black = '#393836'
+red = '#c4746e'
+green = '#699469'
+yellow = '#c4b28a'
+blue = '#435965'
+magenta = '#a292a3'
+cyan = '#8ea49e'
+white = '#C8C093'
 
 [colors.bright]
-black   = "#585b70"
-red     = "#f38ba8"
-green   = "#a6e3a1"
-yellow  = "#f9e2af"
-blue    = "#89b4fa"
-magenta = "#cba6f7"
-cyan    = "#94e2d5"
-white   = "#a6adc8"
+black = '#aca9a4'
+red = '#cc928e'
+green = '#72a072'
+yellow = '#d4c196'
+blue = '#698a9b'
+magenta = '#b4a7b5'
+cyan = '#96ada7'
+white = '#d5cd9d'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#b6927b'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#c4746e'
 
 [cursor]
 style = "Block"

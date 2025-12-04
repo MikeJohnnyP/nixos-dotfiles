@@ -33,7 +33,7 @@ return {
 			},
 
 			appearance = {
-				use_nvim_cmp_as_default = true,
+				use_nvim_cmp_as_default = false,
 				nerd_font_variant = 'mono'
 			},
 
@@ -50,7 +50,7 @@ return {
 					auto_show_delay_ms = 500,
 					window = {
 						border = "rounded",
-						winblend = 1,
+						winblend = 0,
 					},
 				},
 				menu = {
@@ -86,7 +86,7 @@ return {
 					},
 
 					border = "rounded",
-					winblend = 1,
+					winblend = 0,
 				},
 			}
 		},
