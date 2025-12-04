@@ -2,7 +2,7 @@
 
 {
 	imports = [
-    	./../../modules/home-manager/default.nix
+		./../../modules/home-manager/default.nix
 		./../../modules/home-manager/i3-wm.nix
 		./../../modules/home-manager/firefox.nix
 		./../../modules/home-manager/zathura.nix
@@ -29,6 +29,7 @@
 	within.zsh.enable = true;
 	within.ghostty.enable = true;
 	within.neovim.enable = true;
+	within.alacritty.enable = true;
 
 	nixpkgs.config.allowUnfree = true;
 	

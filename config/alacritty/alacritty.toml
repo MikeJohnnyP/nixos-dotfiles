@@ -1,0 +1,69 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+# padding = { x = 10, y = 10 }
+decorations = "none"
+opacity = 0.94
+option_as_alt = "Both"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+style = "Bold"
+
+[font.italic]
+style = "Italic"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+# ────────────────────── CATPPUCCIN MOCHA (2025) ──────────────────────
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[colors.cursor]
+text = "#1e1e2e"
+cursor = "#f5e0dc"    # rosewater
+
+[colors.selection]
+text = "CellForeground"
+background = "#585b70"
+
+[colors.normal]
+black   = "#45475a"
+red     = "#f38ba8"
+green   = "#a6e3a1"
+yellow  = "#f9e2af"
+blue    = "#89b4fa"
+magenta = "#cba6f7"
+cyan    = "#94e2d5"
+white   = "#bac2de"
+
+[colors.bright]
+black   = "#585b70"
+red     = "#f38ba8"
+green   = "#a6e3a1"
+yellow  = "#f9e2af"
+blue    = "#89b4fa"
+magenta = "#cba6f7"
+cyan    = "#94e2d5"
+white   = "#a6adc8"
+
+[cursor]
+style = "Block"
+
+[bell]
+duration = 0
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
