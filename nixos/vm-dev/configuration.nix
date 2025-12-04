@@ -45,7 +45,14 @@
   };
 
   services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    background = "/home/mikejohnp/nixos-dotfiles/config/bg/rain_world_1.png";
+  };
+  services.xserver.displayManager.lightdm.greeters.slick = {
+    enable = true;
+    draw-user-backgrounds = true;
+  };
   services.xserver.displayManager.defaultSession = "none+i3";
 
   i18n.defaultLocale = "en_US.UTF-8";

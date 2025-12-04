@@ -52,9 +52,9 @@ in
         extraConfig = ''
                 default_border pixel 1
                 for_window [class="ghostty, firefox, alacritty"] border none
-                for_window [class="firefox"] move to workspace b
-                font pango:JetBrainsMono Nerd Font 16
-                exec --no-startup-id sh -c "sleep 1 && ${pkgs.feh}/bin/feh --bg-fill ~/nixos-dotfiles/config/bg/miku1.png"
+                # for_window [class="firefox"] move to workspace b
+                font pango:JetBrainsMono Nerd Font 14
+                exec --no-startup-id sh -c "sleep 0.5 && ${pkgs.feh}/bin/feh --bg-fill ~/nixos-dotfiles/config/bg/miku1.png"
                 exec --no-startup-id alacritty
                 exec --no-startup-id ${pkgs.open-vm-tools}/bin/vmware-user
                 exec i3-msg workspace 1
