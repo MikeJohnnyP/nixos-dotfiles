@@ -8,6 +8,7 @@
 		./../../modules/home-manager/zathura.nix
 		./../../modules/home-manager/vscode.nix
 		./../../modules/home-manager/neovim.nix
+		./../../modules/home-manager/picom.nix
 		./lang.nix
   	];
 

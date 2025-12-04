@@ -12,9 +12,10 @@ in
                 inner = 4;
                 outer = 3;
             };
-            terminal = "ghostty";
+            # terminal = "ghostty";
+            terminal = "alacritty";
             keybindings = lib.mkOptionDefault {
-                "${mod}+Return" = "exec ghostty";
+                "${mod}+Return" = "exec alacritty";
                 "${mod}+Shift+f" = "exec firefox";
                 "${mod}+Shift+d" = "exec zathura";
                 "${mod}+Shift+t" = "exec --no-startup-id bash $HOME/.config/zathura/change-theme.bash";
@@ -54,7 +55,7 @@ in
                 for_window [class="firefox"] move to workspace b
                 font pango:JetBrainsMono Nerd Font 16
                 exec --no-startup-id sh -c "sleep 1 && ${pkgs.feh}/bin/feh --bg-fill ~/nixos-dotfiles/config/bg/miku1.png"
-                exec --no-startup-id ghostty
+                exec --no-startup-id alacritty
                 exec --no-startup-id ${pkgs.open-vm-tools}/bin/vmware-user
                 exec i3-msg workspace 1
         '';

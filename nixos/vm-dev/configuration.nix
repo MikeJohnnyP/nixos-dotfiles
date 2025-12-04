@@ -48,15 +48,6 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
 
-  # transparent i3
-  services.picom = {
-    enable = true;
-    settings = {
-      # rounded-corners = true;
-      # corner-radius = 15;
-    };
-  };
-
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
