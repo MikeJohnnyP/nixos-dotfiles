@@ -23,12 +23,6 @@
     automountPath = "/mnt";
     defaultUser = "mikejohnp";
     startMenuLaunchers = true;
-
-    wslg = {
-      enable = true;
-      defaultDisplayManager = false;
-    };
-
     interop.register = true;
     interop.includePath = true;
   };
