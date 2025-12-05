@@ -30,7 +30,7 @@
     };
 
     interop.register = true;
-    interop.includeSystemDirectories = true;
+    interop.includePath = true;
   };
 
   nix = {
