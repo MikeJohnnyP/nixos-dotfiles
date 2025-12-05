@@ -58,7 +58,7 @@
   # };
 
   services.xserver.displayManager.lightdm.enable = lib.mkForce false;
-  services.xserver.displaydisplayManager.startx.enable = true;
+  services.xserver.displayManager.startx.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
 
   i18n.defaultLocale = "en_US.UTF-8";
