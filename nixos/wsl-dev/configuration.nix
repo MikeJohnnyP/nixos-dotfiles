@@ -24,10 +24,13 @@
     defaultUser = "mikejohnp";
     startMenuLaunchers = true;
 
-    wslg.enable = true;
-    wslg.defaultDisplayManager = false;
+    wslg = {
+      enable = true;
+      defaultDisplayManager = false;
+    };
 
-    interop.enabled = true;
+    interop.register = true;
+    interop.includeSystemDirectories = true;
   };
 
   nix = {
