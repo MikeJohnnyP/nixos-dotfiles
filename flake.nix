@@ -4,16 +4,20 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 		home-manager = {
-      		url = "github:nix-community/home-manager/master";
-      		inputs.nixpkgs.follows = "nixpkgs";
-    	};
+			url = "github:nix-community/home-manager/master";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 		nixos-hardware.url = "github:NixOS/nixos-hardware";
+		nixos-wsl = {
+		      url = "github:nix-community/NixOS-WSL/main";
+		      inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 	outputs = { self, nixpkgs, home-manager, ...} @inputs:
 	let
 		mkNixosConfig =
-        system: extraModules:
-        nixpkgs.lib.nixosSystem {
+		system: extraModules:
+		nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs system; };
           modules = extraModules;
@@ -23,6 +27,10 @@
 		nixosConfigurations = {
 			nixos-btw = mkNixosConfig "x86_64-linux" [
 				./nixos/vm-dev/configuration.nix
+			];
+			wsl-btw = mkNixosConfig "x86_64-linux" [
+				./nixos/wsl-dev/configuration.nix
+				inputs.nixos-wsl.nixosModules.wsl
 			];
 		};
 
