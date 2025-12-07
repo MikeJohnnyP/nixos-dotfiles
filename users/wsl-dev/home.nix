@@ -7,7 +7,6 @@
 		./../../modules/home-manager/tmux.nix
 		./../../modules/home-manager/i3-wm.nix
 		./../../modules/home-manager/alacritty.nix
-		./../../modules/home-manager/picom.nix
 		./vnc-config.nix
 		./lang.nix
   	];
