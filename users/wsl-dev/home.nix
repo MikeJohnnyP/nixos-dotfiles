@@ -8,6 +8,7 @@
 		./../../modules/home-manager/i3-wm.nix
 		./../../modules/home-manager/alacritty.nix
 		./../../modules/home-manager/picom.nix
+		./vnc-config.nix
 		./lang.nix
   	];
 
@@ -36,7 +37,6 @@
 		nil
 		nixpkgs-fmt
 		fastfetch
-		turbovnc
 		feh
 		nerd-fonts.jetbrains-mono
 	];
@@ -44,11 +44,6 @@
   	home.sessionVariables = {
 		EDITOR = "nvim";
   	};
-
-	 home.file.".Xsession" = {
-	    source = ./../../config/turbo-vnc/Xsession;
-	    executable = true;
-	 };
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
