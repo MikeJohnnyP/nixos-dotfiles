@@ -28,6 +28,7 @@
 			nixos-btw = mkNixosConfig "x86_64-linux" [
 				./nixos/vm-dev/configuration.nix
 			];
+
 			wsl-btw = mkNixosConfig "x86_64-linux" [
 				./nixos/wsl-dev/configuration.nix
 				inputs.nixos-wsl.nixosModules.wsl
@@ -35,14 +36,22 @@
 		};
 
 		homeConfigurations = {
-			"nixos-btw" = home-manager.lib.homeManagerConfiguration
-          	{
+
+			"nixos-btw" = home-manager.lib.homeManagerConfiguration {
 				pkgs = nixpkgs.legacyPackages.x86_64-linux;
 				extraSpecialArgs = { inherit inputs; };
 				modules = [
 					./users/vm-dev/home.nix
 				];
-          	};
+			};
+
+			"wsl-btw" = home-manager.lib.homeManagerConfiguration {
+				pkgs = nixpkgs.legacyPackages.x86_64-linux;
+				extraSpecialArgs = { inherit inputs; };
+				modules = [
+					./users/wsl-dev/home.nix
+				];
+			};
 		};
 
 	};

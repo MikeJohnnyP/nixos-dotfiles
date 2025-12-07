@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable {
     home.file = {
       ".config/ghostty/config" = {
-        source = ../../config/ghostty/config;
+      source = ../../config/ghostty/config;
       };
     };
   };

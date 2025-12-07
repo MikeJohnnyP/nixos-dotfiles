@@ -3,7 +3,6 @@
 {
   imports =
     [ 
-      # /etc/nixos/hardware-configuration.nix
       ./custom.nix
     ];
 
@@ -12,20 +11,24 @@
 
   # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
 
-  # Hoặc nếu dùng NetworkManagerg
   networking.networkmanager.dns = "none";
-  networking.resolvconf.enable = false;  # tắt resolvconf của NM
+  networking.resolvconf.enable = false;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   wsl = {
     enable = true;
-    automountPath = "/mnt";
     defaultUser = "mikejohnp";
     startMenuLaunchers = true;
+    useWindowsDriver = true;
+    wslConf = {
+      automount.enabled = true;
+      automount.ldconfig = true;
+    };
     interop.register = true;
     interop.includePath = true;
   };
+  
 
   nix = {
     package = pkgs.nixVersions.stable;
@@ -34,29 +37,6 @@
     '';
   };
 
-
-  services.xserver = {
-  	enable = true;
-    # autoRepeatDelay = 200;
-    # autoRepeatInterval = 35;
-    xkb.layout = "us";
-    xkb.variant = "";
-    xkb.options = "ctrl:nocaps";
-  };
-
-  services.xserver.windowManager.i3.enable = true;
-  # services.xserver.displayManager.lightdm = {
-  #   enable = true;
-  #   background = "/home/mikejohnp/nixos-dotfiles/config/bg/rain_world_1.png";
-  # };
-  # services.xserver.displayManager.lightdm.greeters.slick = {
-  #   enable = true;
-  #   draw-user-backgrounds = true;
-  # };
-
-  services.xserver.displayManager.lightdm.enable = lib.mkForce false;
-  services.xserver.displayManager.startx.enable = true;
-  services.xserver.displayManager.defaultSession = "none+i3";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -72,7 +52,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   users.users.mikejohnp = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -80,7 +59,6 @@
     ];
   };
 
-  programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
    vim
@@ -90,17 +68,18 @@
    gcc
    home-manager
    git
-   wsl-open
-   xdg-utils
-   # pulseaudio
-   wl-clipboard
+   mesa-demos
  ];
  
  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
  services.openssh.enable = true;
 
- system.stateVersion = "25.05";
-
+  # Workaround for hardware acceleration on NixOS-WSL
+  # https://github.com/nix-community/NixOS-WSL/issues/454
+  environment.sessionVariables.LD_LIBRARY_PATH = ["/usr/lib/wsl/lib/"];
+  environment.sessionVariables.GALLIUM_DRIVER = "d3d12";
+  environment.sessionVariables.MESA_D3D12_DEFAULT_ADAPTER=0;
+  system.stateVersion = "25.05";
 }
 

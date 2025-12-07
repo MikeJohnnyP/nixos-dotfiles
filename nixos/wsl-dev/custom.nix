@@ -13,7 +13,6 @@
 
   users.users.mikejohnp.packages = lib.mkDefault [
     pkgs.vim
-    pkgs.alsa-tools
     pkgs.home-manager
   ];
 
@@ -24,21 +23,23 @@
   ];
 
   programs.zsh = {
-		enable = true;
-		shellAliases = {
-			btw = "echo I use nixos, btw";
-		};
-	};
+    enable = true;
+    shellAliases = {
+      btw = "echo I use nixos, btw";
+    };
+  };
 
-	users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
   
   virtualisation.docker.enable = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
-  # boot.loader.systemd-boot.configurationLimit = 5;
+
+ hardware.graphics = {
+  enable = true;
+ };
 
   # Garbage Collector Setting
-  #nix.gc.automatic = true;
-  
-  #nix.gc.dates = "daily";
-  #nix.gc.options = "--delete-older-than 7d";
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than 7d";
 }

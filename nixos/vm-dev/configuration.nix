@@ -20,10 +20,8 @@
   networking.networkmanager.enable = true;
 
   # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ];
-
-  # Hoặc nếu dùng NetworkManagerg
   networking.networkmanager.dns = "none";
-  networking.resolvconf.enable = false;  # tắt resolvconf của NM
+  networking.resolvconf.enable = false;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -36,23 +34,14 @@
 
 
   services.xserver = {
-  	enable = true;
-    # autoRepeatDelay = 200;
-    # autoRepeatInterval = 35;
+    enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-    xkb.options = "ctrl:nocaps";
   };
-
   services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    background = "/home/mikejohnp/nixos-dotfiles/config/bg/rain_world_1.png";
-  };
-  services.xserver.displayManager.lightdm.greeters.slick = {
-    enable = true;
-    draw-user-backgrounds = true;
-  };
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.greeters.slick.enable = true;
+
   services.xserver.displayManager.defaultSession = "none+i3";
 
   i18n.defaultLocale = "en_US.UTF-8";
