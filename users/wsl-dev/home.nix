@@ -37,6 +37,7 @@
 		nixpkgs-fmt
 		fastfetch
 		feh
+		lazygit
 		nerd-fonts.jetbrains-mono
 	];
 

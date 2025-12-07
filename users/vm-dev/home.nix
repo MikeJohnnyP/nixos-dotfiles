@@ -42,8 +42,9 @@
 		alacritty
 		ghostty
 		fastfetch
-    	dmenu
-    	feh
+		lazygit
+		dmenu
+		feh
 		nerd-fonts.jetbrains-mono
 	];
 
