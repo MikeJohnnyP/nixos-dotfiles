@@ -1,25 +1,25 @@
 { pkgs, lib, ... }:
 
 let
-  python_version = pkgs.python3_13;
+  python_sys = pkgs.python312;
 in
 {
-  home.packages = with pkgs; [
+  home.packages = [
     # Python
-    python3
+    python_sys
     # Node.js
-    nodejs_latest
+    pkgs.nodejs_latest
     #jdk21
-    jdk21
+    pkgs.jdk21
     #maven
-    maven
+    pkgs.maven
     #gradle
-    gradle
+    pkgs.gradle
   ];
 
   home.sessionVariables = {
     # Python
-    PYTHONSTARTUP = "${pkgs.python3}/lib/python3.13/site-packages";
+    PYTHONSTARTUP = "${python_sys}/lib/python3.12/site-packages";
 
     # Node.js
     NODE_PATH = "~/.npm-global/lib/node_modules";

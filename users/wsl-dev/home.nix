@@ -5,6 +5,9 @@
 		./../../modules/home-manager/neovim.nix
 		./../../modules/home-manager/zsh.nix
 		./../../modules/home-manager/tmux.nix
+		./../../modules/home-manager/i3-wm.nix
+		./../../modules/home-manager/alacritty.nix
+		./../../modules/home-manager/picom.nix
 		./lang.nix
   	];
 
@@ -22,6 +25,7 @@
 	  };
 	home.stateVersion = "25.05";
 
+	within.alacritty.enable = true;
 	within.zsh.enable = true;
 	within.neovim.enable = true;
 
@@ -32,11 +36,19 @@
 		nil
 		nixpkgs-fmt
 		fastfetch
+		turbovnc
+		feh
+		nerd-fonts.jetbrains-mono
 	];
 
   	home.sessionVariables = {
 		EDITOR = "nvim";
   	};
+
+	 home.file.".Xsession" = {
+	    source = ./../../config/turbo-vnc/Xsession;
+	    executable = true;
+	 };
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;

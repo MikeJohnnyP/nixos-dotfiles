@@ -28,7 +28,13 @@
     interop.register = true;
     interop.includePath = true;
   };
-  
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.startx.enable = true;
+
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.displayManager.defaultSession = "none+i3";
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   nix = {
     package = pkgs.nixVersions.stable;
@@ -69,6 +75,8 @@
    home-manager
    git
    mesa-demos
+   xclip
+   xsel
  ];
  
  nix.settings.experimental-features = [ "nix-command" "flakes" ];

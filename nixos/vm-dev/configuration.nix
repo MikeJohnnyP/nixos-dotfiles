@@ -77,6 +77,9 @@
    home-manager
    open-vm-tools
    git
+   mesa-demos
+   xclip
+   xsel
  ];
  
  nix.settings.experimental-features = [ "nix-command" "flakes" ];
