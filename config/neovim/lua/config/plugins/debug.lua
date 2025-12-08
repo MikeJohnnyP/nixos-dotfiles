@@ -26,6 +26,9 @@ return {
 		-- Required dependency for nvim-dap-ui
 		'nvim-neotest/nvim-nio',
 
+		-- Show virtual text
+		'theHamsta/nvim-dap-virtual-text',
+
 		-- Installs the debug adapters for you
 		'williamboman/mason.nvim',
 		'jay-babu/mason-nvim-dap.nvim',
@@ -90,6 +93,13 @@ return {
 			end,
 			desc = 'Debug: Set Breakpoint',
 		},
+		{
+			'<leader>?',
+			function()
+				require("dapui").eval(nil, { enter = true })
+			end,
+			desc = 'Debug: Eval value',
+		},
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 		{
 			'<F7>',
@@ -116,6 +126,7 @@ return {
 		-- },
 	},
 	config = function()
+		require("nvim-dap-virtual-text").setup()
 		local dap = require 'dap'
 		local dapui = require 'dapui'
 
