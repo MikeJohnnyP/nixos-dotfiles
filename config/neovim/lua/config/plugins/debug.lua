@@ -6,6 +6,15 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+
+-- local js_based_languages = {
+--   "typescript",
+--   "javascript",
+--   "typescriptreact",
+--   "javascriptreact",
+--   "vue",
+-- }
+
 return {
 	-- NOTE: Yes, you can install new plugins here!
 	'mfussenegger/nvim-dap',
@@ -23,6 +32,19 @@ return {
 
 		-- Python debugger
 		'mfussenegger/nvim-dap-python',
+
+		-- javascript, typescript framework debug
+		"mxsdev/nvim-dap-vscode-js",
+		-- build debugger from source
+		{
+			"microsoft/vscode-js-debug",
+			version = "1.x",
+			build = "echo 'Skip build – using prebuilt'",
+		},
+		-- {
+		-- 	"Joakker/lua-json5",
+		-- 	build = "./install.sh",
+		-- },
 	},
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
@@ -76,10 +98,136 @@ return {
 			end,
 			desc = 'Debug: See last session result.',
 		},
+
+		-- {
+		-- 	"<leader>da",
+		-- 	function()
+		-- 	  if vim.fn.filereadable(".vscode/launch.json") then
+		-- 		local dap_vscode = require("dap.ext.vscode")
+		-- 		dap_vscode.load_launchjs(nil, {
+		-- 		  ["pwa-node"] = js_based_languages,
+		-- 		  ["chrome"] = js_based_languages,
+		-- 		  ["pwa-chrome"] = js_based_languages,
+		-- 		})
+		-- 	  end
+		-- 	  require("dap").continue()
+		-- 	end,
+		-- 	desc = "Run with Args",
+		-- },
 	},
 	config = function()
 		local dap = require 'dap'
 		local dapui = require 'dapui'
+
+		-- require("dap-vscode-js").setup({
+		-- 		debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+		-- 		debugger_cmd = { "node", vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/out/src/vsDebugServer.js" },
+		-- 		adapters = { 
+		-- 			"chrome",
+		-- 			"pwa-chrome",
+		-- 			"pwa-node",
+		-- 			"pwa-msedge",
+		-- 			"pwa-extensionHost",
+		-- 			"node-terminal"
+		-- 		},
+		-- })
+	
+	for _, adapterType in ipairs({ "node", "chrome", "msedge" }) do
+			local pwaType = "pwa-" .. adapterType
+
+			dap.adapters[pwaType] = {
+				type = "server",
+				host = "localhost",
+				port = "${port}",
+				executable = {
+					command = "node",
+					args = {
+						vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+						"${port}",
+					},
+				},
+			}
+
+			-- this allow us to handle launch.json configurations
+			-- which specify type as "node" or "chrome" or "msedge"
+			dap.adapters[adapterType] = function(cb, config)
+				local nativeAdapter = dap.adapters[pwaType]
+
+				config.type = pwaType
+
+				if type(nativeAdapter) == "function" then
+					nativeAdapter(cb, config)
+				else
+					cb(nativeAdapter)
+				end
+			end
+		end
+
+		local enter_launch_url = function()
+			local co = coroutine.running()
+			return coroutine.create(function()
+				vim.ui.input({ prompt = "Enter URL: ", default = "http://localhost:" }, function(url)
+					if url == nil or url == "" then
+						return
+					else
+						coroutine.resume(co, url)
+					end
+				end)
+			end)
+		end
+
+		local continue = function()
+			-- support for vscode launch.json is partial.
+			-- not all configuration options and features supported
+			if vim.fn.filereadable(".vscode/launch.json") then
+				require("dap.ext.vscode").load_launchjs()
+			end
+			dap.continue()
+		end
+
+		for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }) do
+			dap.configurations[language] = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file using Node.js (nvim-dap)",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				},
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Attach to process using Node.js (nvim-dap)",
+					processId = require("dap.utils").pick_process,
+					cwd = "${workspaceFolder}",
+				},
+				-- requires ts-node to be installed globally or locally
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file using Node.js with ts-node/register (nvim-dap)",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+					runtimeArgs = { "-r", "ts-node/register" },
+				},
+				{
+					type = "pwa-chrome",
+					request = "launch",
+					name = "Launch Chrome (nvim-dap)",
+					url = enter_launch_url,
+					webRoot = "${workspaceFolder}",
+					sourceMaps = true,
+				},
+				{
+					type = "pwa-msedge",
+					request = "launch",
+					name = "Launch Edge (nvim-dap)",
+					url = enter_launch_url,
+					webRoot = "${workspaceFolder}",
+					sourceMaps = true,
+				},
+			}
+		end
 
 		require('mason-nvim-dap').setup {
 			-- Makes a best effort to setup the various debuggers with
@@ -94,9 +242,75 @@ return {
 			-- online, please don't ask me how to install them :)
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
-				'python',
+				'python', 'js-debug-adapter', 'chrome-debug-adapter'
 			},
 		}
+
+		-- for _, language in ipairs({ "typescript", "javascript", "svelte", "typescriptreact", "vue" }) do
+		-- 	require("dap").configurations[language] = {
+		-- 		  -- Debug single nodejs files
+		-- 		  {
+		-- 			type = "pwa-node",
+		-- 			request = "launch",
+		-- 			name = "Launch file",
+		-- 			program = "${file}",
+		-- 			cwd = vim.fn.getcwd(),
+		-- 			sourceMaps = true,
+		-- 		  },
+		-- 		   -- Debug nodejs processes (make sure to add --inspect when you run the process)
+		-- 		  {
+		-- 			type = "pwa-node",
+		-- 			request = "attach",
+		-- 			name = "Attach",
+		-- 			processId = require("dap.utils").pick_process,
+		-- 			cwd = vim.fn.getcwd(),
+		-- 			sourceMaps = true,
+		-- 		  },
+		--
+		-- 		  -- Debug web applications (client side)
+		-- 		  {
+		-- 			type = "pwa-chrome",
+		-- 			request = "launch",
+		-- 			name = "Launch & Debug Chrome",
+		-- 			url = function()
+		-- 			  local co = coroutine.running()
+		-- 			  return coroutine.create(function()
+		-- 				vim.ui.input({
+		-- 				  prompt = "Enter URL: ",
+		-- 				  default = "http://localhost:3000",
+		-- 				}, function(url)
+		-- 				  if url == nil or url == "" then
+		-- 					return
+		-- 				  else
+		-- 					coroutine.resume(co, url)
+		-- 				  end
+		-- 				end)
+		-- 			  end)
+		-- 			end,
+		-- 			webRoot = vim.fn.getcwd(),
+		-- 			protocol = "inspector",
+		-- 			sourceMaps = true,
+		-- 			userDataDir = false,
+		-- 		  },
+		-- 		-- only if language is javascript, offer this debug action
+		-- 		language == "javascript" and {
+		-- 			-- use nvim-dap-vscode-js's pwa-node debug adapter
+		-- 			type = "pwa-node",
+		-- 			-- launch a new process to attach the debugger to
+		-- 			request = "launch",
+		-- 			-- name of the debug action you have to select for this config
+		-- 			name = "Launch file in new node process",
+		-- 			-- launch current file
+		-- 			program = "${file}",
+		-- 			cwd = "${workspaceFolder}",
+		-- 		} or nil,
+				-- {
+				-- 	name = "----- ↓ launch.json configs ↓ -----",
+				-- 	type = "",
+				-- 	request = "launch",
+				-- },
+			-- }
+		-- end
 
 		dap.adapters.codelldb = {
 			type = "executable",
@@ -170,10 +384,14 @@ return {
 			vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
 		end
 
-		dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+		dap.listeners.after.event_initialized["dapui_config"] = function()
+			dapui.open({ reset = true })
+		end
 		dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 		dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 		require('dap-python').setup("python")
+
+		vim.keymap.set("n", "<leader>dc", continue, { desc = "Continue" })
 	end,
 }

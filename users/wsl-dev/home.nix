@@ -39,6 +39,7 @@
 		feh
 		lazygit
 		nerd-fonts.jetbrains-mono
+		google-chrome
 	];
 
   	home.sessionVariables = {
