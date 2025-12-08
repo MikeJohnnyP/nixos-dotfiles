@@ -1,13 +1,37 @@
 return {
 	{
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		dependencies = {
+		  -- Add a collection of common snippets (including HTML)
+		  {
+			"rafamadriz/friendly-snippets",
+			config = function()
+			  require("luasnip.loaders.from_vscode").lazy_load()
+			  -- Optional: load custom snippets from a local directory
+			  require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+
+			local ls = require("luasnip")
+			ls.filetype_extend("typescriptreact", { "html" })
+			ls.filetype_extend("javascriptreact", { "html" })
+			ls.filetype_extend("typescript", { "javascript" })
+			end,
+		  },
+		},
+		opts = {
+		  history = true,
+		  delete_check_events = "TextChanged",
+		},
+	},
+	{
 		'saghen/blink.cmp',
 		enabled = true,
 		dependencies = {
-			'rafamadriz/friendly-snippets',
 			"xzbdmw/colorful-menu.nvim",
 		},
 		version = 'v0.*',
 		opts = {
+			snippets = { preset = 'luasnip' },
 			keymap = {
 				preset = 'default',
 				['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -31,9 +55,11 @@ return {
 				keyword = { range = 'full' },
 
 			},
-
+			sources = {
+			  default = { 'lsp', 'path', 'snippets', 'buffer' },
+			},
 			appearance = {
-				use_nvim_cmp_as_default = false,
+				use_nvim_cmp_as_default = true,
 				nerd_font_variant = 'mono'
 			},
 
