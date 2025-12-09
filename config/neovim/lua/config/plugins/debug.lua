@@ -230,6 +230,16 @@ return {
 					sourceMaps = true,
 				},
 				{
+					  type = "pwa-chrome",
+					  request = "attach",
+					  name = "Attach Chrome Windows (PIPE – WSL2 fix)",
+					  port = 9222,
+					  webRoot = "${workspaceFolder}",
+					  sourceMaps = true,
+					  -- Chỉ cần thêm 1 dòng duy nhất:
+					  runtimeArgs = { "--remote-debugging-pipe" },
+				},
+				{
 					type = "pwa-msedge",
 					request = "launch",
 					name = "Launch Edge (nvim-dap)",

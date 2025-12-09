@@ -19,7 +19,7 @@
   environment.systemPackages = [
     pkgs.docker-compose
     pkgs.lazydocker
-    pkgs.tlrc  
+    pkgs.tlrc
   ];
 
   programs.zsh = {
@@ -30,14 +30,14 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-  
+
   virtualisation.docker.enable = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
- hardware.graphics = {
-  enable = true;
-  enable32Bit = true;
- };
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Garbage Collector Setting
   nix.gc.automatic = true;

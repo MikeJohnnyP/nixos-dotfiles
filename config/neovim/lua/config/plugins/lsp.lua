@@ -1,5 +1,4 @@
-return
-{
+return {
 	-- {
 	-- 	"neovim/nvim-lspconfig",
 	-- 	dependencies = {
@@ -103,7 +102,6 @@ return
 	-- 				-- or a suggestion from your LSP for this to activate.
 	-- 				map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
-
 	-- 				-- See `:help K` for why this keymap
 	-- 				map('P', vim.lsp.buf.hover, 'Hover Documentation')
 	-- 				map('<C-p>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -174,7 +172,6 @@ return
 	-- 	end,
 	-- }
 
-
 	{
 		"williamboman/mason.nvim",
 		-- version = "v1.11.0",
@@ -195,7 +192,7 @@ return
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
-			local capabilities = require('blink.cmp').get_lsp_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			-- lua
 			vim.lsp.config["lua_ls"] = {
 				cmd = { "lua-language-server" },
@@ -325,13 +322,12 @@ return
 				local symbols = symbols_map[filetype] or "function"
 				require("fzf-lua").lsp_document_symbols({ symbols = symbols })
 			end, {})
-			vim.api.nvim_create_autocmd('FileType', {
-				pattern = 'java',
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "java",
 				callback = function(args)
-					require'jdtls.jdtls_setup'.setup()
-				end
+					require("jdtls.jdtls_setup").setup()
+				end,
 			})
 		end,
 	},
-
 }

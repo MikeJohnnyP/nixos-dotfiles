@@ -27,9 +27,11 @@ in
       pkgs.luajitPackages.jsregexp
       # pkgs.jdt-language-server
       pkgs.nil
+      pkgs.prettierd
       # pkgs.gopls
       # pkgs.gofumpt
       pkgs.stylua
+      pkgs.nixfmt
       pkgs.basedpyright
       pkgs.pyright
       pkgs.ruff
@@ -50,4 +52,3 @@ in
     };
   };
 }
-

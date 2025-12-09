@@ -27,10 +27,10 @@ in
     # Java 21
     JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
 
-    # Gradle home 
-    GRADLE_HOME="${pkgs.gradle}/lib/gradle";
+    # Gradle home
+    GRADLE_HOME = "${pkgs.gradle}/lib/gradle";
 
     # Maven home
-    MVN_HOME="${pkgs.maven}/maven";
+    MVN_HOME = "${pkgs.maven}/maven";
   };
 }

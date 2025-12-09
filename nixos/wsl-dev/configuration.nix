@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ 
-      ./custom.nix
-    ];
+  imports = [
+    ./custom.nix
+  ];
 
   networking.hostName = "nixos-btw";
   networking.networkmanager.enable = true;
@@ -37,9 +41,9 @@
   services.xserver.videoDrivers = [ "modesetting" ];
 
   services.displayManager.autoLogin = {
-      enable = true;
-      user = "mikejohnp";
-    };
+    enable = true;
+    user = "mikejohnp";
+  };
 
   nix = {
     package = pkgs.nixVersions.stable;
@@ -47,7 +51,6 @@
       experimental-features = nix-command flakes
     '';
   };
-
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -72,27 +75,29 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-   vim
-   wget
-   tree
-   gh
-   gcc
-   home-manager
-   git
-   mesa-demos
-   xclip
-   xsel
- ];
- 
- nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    vim
+    wget
+    tree
+    gh
+    gcc
+    home-manager
+    git
+    mesa-demos
+    xclip
+    xsel
+  ];
 
- services.openssh.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  services.openssh.enable = true;
 
   # Workaround for hardware acceleration on NixOS-WSL
   # https://github.com/nix-community/NixOS-WSL/issues/454
-  environment.sessionVariables.LD_LIBRARY_PATH = ["/run/opengl-driver/lib/"];
+  environment.sessionVariables.LD_LIBRARY_PATH = [ "/run/opengl-driver/lib/" ];
   environment.sessionVariables.GALLIUM_DRIVER = "d3d12";
-  environment.sessionVariables.MESA_D3D12_DEFAULT_ADAPTER=0;
+  environment.sessionVariables.MESA_D3D12_DEFAULT_ADAPTER = 0;
   system.stateVersion = "25.05";
 }
-
