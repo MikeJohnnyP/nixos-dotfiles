@@ -27,7 +27,9 @@ in
       pkgs.luajitPackages.jsregexp
       # pkgs.jdt-language-server
       pkgs.nil
+      pkgs.eslint_d
       pkgs.prettierd
+      pkgs.htmlhint
       # pkgs.gopls
       # pkgs.gofumpt
       pkgs.stylua
@@ -42,6 +44,7 @@ in
       # pkgs.luarocks
       pkgs.lua51Packages.lua
       pkgs.lua51Packages.luarocks
+      pkgs.vscode-langservers-extracted
       # pkgs.asm-lsp
     ];
     home.file = {

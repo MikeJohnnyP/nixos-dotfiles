@@ -5,6 +5,8 @@ return {
 			nix = { "nixfmt" },
 			lua = { "stylua" },
 			python = { "ruff", "isort", "black" },
+			svelte = { { "prettierd", "prettier", stop_after_first = true } },
+			astro = { { "prettierd", "prettier", stop_after_first = true } },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			typescirpt = { "prettierd", "prettier", stop_after_first = true },
 			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -13,6 +15,7 @@ return {
 			html = { "prettierd", "prettier", stop_after_first = true },
 			json = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "prettierd", "prettier", stop_after_first = true },
+			graphql = { { "prettierd", "prettier", stop_after_first = true } },
 			markdown = { "prettierd", "prettier", stop_after_first = true },
 			vue = { "prettierd", "prettier", stop_after_first = true },
 		},
@@ -22,4 +25,14 @@ return {
 			lsp_format = "fallback",
 		},
 	},
+	config = function()
+		local conform = require("conform")
+		vim.keymap.set({ "n", "v" }, "<leader>l", function()
+			conform.format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			})
+		end, { desc = "Format file or range (in visual mode)" })
+	end,
 }

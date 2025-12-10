@@ -230,6 +230,9 @@ return {
 				capabilities = capabilities,
 			}
 
+			vim.lsp.config["html"] = {
+				capabilities = capabilities,
+			}
 			-- vim.lsp.config["gopls"] = {
 			-- 	capabilities = capabilities,
 			-- }
@@ -276,6 +279,11 @@ return {
 			-- vim.lsp.config["asm_lsp"] = {
 			-- 	capabilities = capabilities,
 			-- }
+			--
+			vim.diagnostic.config({
+				virtual_text = true,
+				underline = true,
+			})
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "proto",
@@ -288,6 +296,7 @@ return {
 				"eslint",
 				"zls",
 				"yamlls",
+				"html",
 				"tailwindcss",
 				-- "gopls",
 				"nil_ls",
