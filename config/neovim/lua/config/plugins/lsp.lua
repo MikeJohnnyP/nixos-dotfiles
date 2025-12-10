@@ -214,9 +214,9 @@ return {
 				capabilities = capabilities,
 			}
 
-			vim.lsp.config["eslint"] = {
-				capabilities = capabilities,
-			}
+			-- vim.lsp.config["eslint"] = {
+			-- 	capabilities = capabilities,
+			-- }
 
 			-- vim.lsp.config["zls"] = {
 			-- 	capabilities = capabilities,
@@ -281,8 +281,8 @@ return {
 			-- }
 			--
 			vim.diagnostic.config({
-				virtual_text = true,
-				underline = true,
+					virtual_text = true,
+					underline =  true
 			})
 
 			vim.api.nvim_create_autocmd("FileType", {
@@ -293,7 +293,7 @@ return {
 			})
 			vim.lsp.enable({
 				"ts_ls",
-				"eslint",
+				-- "eslint",
 				"zls",
 				"yamlls",
 				"html",
