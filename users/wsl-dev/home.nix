@@ -39,6 +39,7 @@
     lazygit
     nerd-fonts.jetbrains-mono
     google-chrome
+    unzip
   ];
 
   home.sessionVariables = {

@@ -1,7 +1,7 @@
 -- For conciseness
 local opts = { noremap = true, silent = true }
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 
@@ -13,53 +13,52 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 
 -- Allow moving the cursor through wrapped lines with j, k
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Insert new line
-vim.keymap.set('n', 'zj', 'o<esc>', opts)
-vim.keymap.set('n', 'zk', '<S-o><esc>', opts)
+vim.keymap.set("n", "zj", "o<esc>", opts)
+vim.keymap.set("n", "zk", "<S-o><esc>", opts)
 
 -- delete single character without copying into register
-vim.keymap.set('n', 'x', '"_x', opts)
+vim.keymap.set("n", "x", '"_x', opts)
 
 -- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
-
+vim.keymap.set("v", "p", '"_dP', opts)
 
 -- Explicitly yank to system clipboard (highlighted and entire row)
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Vertical scroll and center
 -- vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
 -- vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
 
-vim.keymap.set('n', '<S-j>', '<C-d>zz', opts)
-vim.keymap.set('n', '<S-k>', '<C-u>zz', opts)
-vim.keymap.set('n', '<S-h>', '^', opts)
-vim.keymap.set('n', '<S-l>', '$', opts)
+vim.keymap.set("n", "<S-j>", "<C-d>zz", opts)
+vim.keymap.set("n", "<S-k>", "<C-u>zz", opts)
+vim.keymap.set("n", "<S-h>", "^", opts)
+vim.keymap.set("n", "<S-l>", "$", opts)
 
 -- Find and center
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- BuffercopeFuzzyCommandSearch)
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
-vim.keymap.set('n', '<leader>qa', ':lua MiniBufremove.delete()<CR>', opts)           -- close buffer
-vim.keymap.set('n', '<leader>qq', ':lua MiniBufremove.unshow_in_window()<CR>', opts) -- close buffer
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
+vim.keymap.set("n", "<leader>qa", ":lua MiniBufremove.delete()<CR>", opts) -- close buffer
+vim.keymap.set("n", "<leader>qq", ":lua MiniBufremove.unshow_in_window()<CR>", opts) -- close buffer
 --vim.keymap.set('n', '<leader>bn', '<cmd> enew <CR>', opts) -- new buffer
 
 -- Save all
-vim.keymap.set('n', '<leader>w', ':wa<CR>', opts)
+vim.keymap.set("n", "<leader>w", ":wa<CR>", opts)
 
 -- Toggle line wrapping
-vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
+vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
 
 -- Stay in indent mode
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
 
 -- Move text up and down
 -- vim.keymap.set('v', '<A-j>', ':m .+2<CR>gv=gv', { silent = true })
@@ -69,17 +68,17 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- vim.keymap.set('n', '<A-k>', ':m .-2<CR>gv=gv', { silent = true })
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
--- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 --  See `:help wincmd` for a list of all window commands
 -- vim.keymap.set('n', '<S-h>', '<C-w><C-h>', { desc = 'Move focus to the left window', silent = true })
