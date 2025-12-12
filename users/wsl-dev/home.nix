@@ -15,12 +15,10 @@
   home.homeDirectory = "/home/mikejohnp";
   programs.git = {
     enable = true;
-    userName = "MikeJohnP";
-    userEmail = "tahoangphuc1901@gmail.com";
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
       pull.rebase = true;
-      core.editor = "vi";
+      core.editor = "vim";
     };
   };
   home.stateVersion = "25.05";
