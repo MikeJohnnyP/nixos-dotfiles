@@ -1,7 +1,7 @@
 -- lua/custom/plugins/mini.lua
 return {
 	{
-		'echasnovski/mini.nvim',
+		"echasnovski/mini.nvim",
 		enabled = true,
 		config = function()
 			-- local statusline = require 'mini.statusline'
@@ -15,17 +15,17 @@ return {
 			-- 	return '%2l:%-2v'
 			-- end
 			-- local completion = require 'mini.completion'
-			local surround = require 'mini.surround'
-			local bufremove = require 'mini.bufremove'
-			local tabline = require 'mini.tabline'
-			local icons = require 'mini.icons'
-			local hipatterns = require 'mini.hipatterns'
-			local move = require 'mini.move'
+			local surround = require("mini.surround")
+			local bufremove = require("mini.bufremove")
+			-- local tabline = require("mini.tabline")
+			local icons = require("mini.icons")
+			local hipatterns = require("mini.hipatterns")
+			local move = require("mini.move")
 			-- local animate = require 'mini.animate'
 			icons.setup()
 			hipatterns.setup()
 			bufremove.setup()
-			tabline.setup()
+			-- tabline.setup()
 			surround.setup()
 			move.setup()
 			-- animate.setup()
@@ -41,6 +41,6 @@ return {
 			-- 		signature = { height = 25, width = 10, border = 'true' },
 			-- 	},
 			-- })
-		end
+		end,
 	},
 }
