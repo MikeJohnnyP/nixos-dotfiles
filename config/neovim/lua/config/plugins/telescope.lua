@@ -11,33 +11,8 @@ return {
 					},
 				},
 			},
+			-- { "nvim-telescope/telescope-treesitter.nvim" },
 		},
-		config = function()
-			-- local telescope = require("telescope")
-			-- telescope.setup({
-			-- 	pickers = {
-			-- 		find_files = {
-			-- 			theme = "ivy",
-			-- 		},
-			-- 		grep_string = {
-			-- 			theme = "ivy",
-			-- 		},
-			-- 		live_grep = {
-			-- 			theme = "ivy",
-			-- 		},
-			-- 		diagnostics = {
-			-- 			theme = "dropdown",
-			-- 		},
-			-- 		buffers = {
-			-- 			theme = "dropdown",
-			-- 		},
-			-- 		help_tags = {
-			-- 			theme = "dropdown",
-			-- 		},
-			-- 	},
-			-- 	extensions = {},
-			-- })
-		end,
 	},
 	{
 		{
@@ -55,19 +30,21 @@ return {
 					},
 					-- set keymappings to navigate through items in the telescope io
 					mappings = {
-						-- i = {
-						-- use <cltr> + n to go to the next option
-						-- ["<C-n>"] = actions.cycle_history_next,
-						-- -- use <cltr> + p to go to the previous option
-						-- ["<C-p>"] = actions.cycle_history_prev,
-						-- -- use <cltr> + j to go to the next preview
-						-- ["<C-j>"] = actions.move_selection_next,
-						-- -- use <cltr> + k to go to the previous preview
-						-- ["<C-k>"] = actions.move_selection_previous,
-						-- },
+						i = {
+							-- use <cltr> + n to go to the next option
+							["<C-n>"] = actions.cycle_history_next,
+							-- use <cltr> + p to go to the previous option
+							["<C-p>"] = actions.cycle_history_prev,
+							-- use <cltr> + j to go to the next preview
+							["<C-j>"] = actions.move_selection_next,
+							-- use <cltr> + k to go to the previous preview
+							["<C-k>"] = actions.move_selection_previous,
+						},
 					},
 					-- load the ui-select extension
 					require("telescope").load_extension("ui-select"),
+					require("telescope").load_extension("dap"),
+					-- require("telescope").load_extension("treesitter"),
 					require("telescope").load_extension("projects"),
 				})
 
@@ -97,10 +74,38 @@ return {
 					require("telescope.builtin").buffers,
 					{ desc = "[ ] Find existing buffers" }
 				)
-				vim.keymap.set("n", "<space>en", function()
-					require("telescope.builtin").find_files({
-						cwd = vim.fn.stdpath("config"),
-					})
+				vim.keymap.set(
+					"n",
+					"<leader>fs",
+					require("telescope.builtin").current_buffer_fuzzy_find,
+					{ desc = "Current fuzzy find" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>fo",
+					require("telescope.builtin").lsp_document_symbols,
+					{ desc = "Document symbols" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>fi",
+					require("telescope.builtin").lsp_incoming_calls,
+					{ desc = "Incoming calls" }
+				)
+				vim.keymap.set("n", "<leader>fw", function()
+					require("telescope.builtin").lsp_dynamic_workspace_symbols()
+				end, { desc = "Workspace symbols" })
+				vim.keymap.set("n", "<leader>fm", function()
+					require("telescope.builtin").treesitter({ symbols = { "function", "method" } })
+				end, { desc = "Treesitter" }) -- fuzzy find methods in current class
+				vim.keymap.set("n", "<leader>ft", function() -- grep file contents in current nvim-tree node
+					local success, node = pcall(function()
+						return require("nvim-tree.lib").get_node_at_cursor()
+					end)
+					if not success or not node then
+						return
+					end
+					require("telescope.builtin").live_grep({ search_dirs = { node.absolute_path } })
 				end)
 
 				vim.keymap.set("n", "<leader>;;", function()

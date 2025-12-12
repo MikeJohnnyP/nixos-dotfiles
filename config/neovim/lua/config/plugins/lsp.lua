@@ -90,13 +90,25 @@ return {
 				"bashls",
 			})
 			-- lsp kepmap setting
-			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP hover" })
+			-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
+			-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+			-- vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
+			vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code action" })
+			vim.keymap.set("n", "gr", function()
+				require("telescope.builtin").lsp_references()
+			end, { desc = "LSP references" })
+			vim.keymap.set("n", "gd", function()
+				require("telescope.builtin").lsp_definitions()
+			end, { desc = "LSP definition" })
+			vim.keymap.set("n", "gD", function()
+				require("telescope.builtin").lsp_type_definitions()
+			end, { desc = "LSP type definitions" })
+			vim.keymap.set("n", "gi", function()
+				require("telescope.builtin").lsp_implementations()
+			end, { desc = "LSP implementations" })
 			-- working with go confirmed, don't know about other, keep changing as necessary
 			vim.keymap.set("n", "<leader>fm", function()
 				local filetype = vim.bo.filetype
@@ -109,8 +121,8 @@ return {
 					go = { "method", "struct", "interface" },
 				}
 				local symbols = symbols_map[filetype] or "function"
-				require("fzf-lua").lsp_document_symbols({ symbols = symbols })
-			end, {})
+				require("telescope.builtin").lsp_document_symbols({ symbols = symbols })
+			end, { desc = "Document symbol" })
 		end,
 	},
 }

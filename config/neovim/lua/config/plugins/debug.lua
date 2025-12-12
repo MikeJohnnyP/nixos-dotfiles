@@ -39,7 +39,7 @@ return {
 		dependencies = {
 			-- Creates a beautiful debugger UI
 			"rcarriga/nvim-dap-ui",
-
+			"nvim-telescope/telescope-dap.nvim",
 			-- Required dependency for nvim-dap-ui
 			"nvim-neotest/nvim-nio",
 
@@ -102,6 +102,34 @@ return {
 					require("dap").toggle_breakpoint()
 				end,
 				desc = "Debug: Toggle Breakpoint",
+			},
+			{
+				"<leader>dr",
+				function()
+					require("dap").clear_breakpoints()
+				end,
+				{ desc = "Clear breakpoints" },
+			},
+			{
+				"<leader>da",
+				function()
+					require("telescope").extensions.dap.list_breakpoints()
+				end,
+				{ desc = "List Breakpoints" },
+			},
+			{
+				"<leader>dv",
+				function()
+					require("telescope").extensions.dap.variables()
+				end,
+				{ desc = "All varibles on debug" },
+			},
+			{
+				"<leader>dc",
+				function()
+					require("telescope").extensions.dap.commands()
+				end,
+				{ desc = "All debug commands" },
 			},
 			{
 				"<leader>B",
