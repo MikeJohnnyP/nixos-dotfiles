@@ -1,59 +1,65 @@
 {
-	description = "NixOs from scratch MikeJohnP";
+  description = "NixOs from scratch MikeJohnP";
 
-	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-		home-manager = {
-			url = "github:nix-community/home-manager/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-		nixos-hardware.url = "github:NixOS/nixos-hardware";
-		nixos-wsl = {
-		      url = "github:nix-community/NixOS-WSL/main";
-		      inputs.nixpkgs.follows = "nixpkgs";
-		};
-	};
-	outputs = { self, nixpkgs, home-manager, ...} @inputs:
-	let
-		mkNixosConfig =
-		system: extraModules:
-		nixpkgs.lib.nixosSystem {
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      mkNixosConfig =
+        system: extraModules:
+        nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs system; };
           modules = extraModules;
         };
-	in
-	{
-		nixosConfigurations = {
-			nixos-btw = mkNixosConfig "x86_64-linux" [
-				./nixos/vm-dev/configuration.nix
-			];
+    in
+    {
+      nixosConfigurations = {
+        nixos-btw = mkNixosConfig "x86_64-linux" [
+          ./nixos/vm-dev/configuration.nix
+        ];
 
-			wsl-btw = mkNixosConfig "x86_64-linux" [
-				./nixos/wsl-dev/configuration.nix
-				inputs.nixos-wsl.nixosModules.wsl
-			];
-		};
+        wsl-btw = mkNixosConfig "x86_64-linux" [
+          ./nixos/wsl-dev/configuration.nix
+          inputs.nixos-wsl.nixosModules.wsl
+        ];
+      };
 
-		homeConfigurations = {
+      homeConfigurations = {
 
-			"nixos-btw" = home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.x86_64-linux;
-				extraSpecialArgs = { inherit inputs; };
-				modules = [
-					./users/vm-dev/home.nix
-				];
-			};
+        "nixos-btw" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./users/vm-dev/home.nix
+          ];
+        };
 
-			"wsl-btw" = home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.x86_64-linux;
-				extraSpecialArgs = { inherit inputs; };
-				modules = [
-					./users/wsl-dev/home.nix
-				];
-			};
-		};
+        "wsl-btw" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./users/wsl-dev/home.nix
+          ];
+        };
+      };
 
-	};
+    };
 
 }

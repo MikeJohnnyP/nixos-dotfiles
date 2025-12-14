@@ -70,8 +70,8 @@ return {
 				)
 				vim.keymap.set(
 					"n",
-					"<leader>fb",
-					require("telescope.builtin").buffers,
+					"<S-b>",
+					"<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal theme=ivy<cr>",
 					{ desc = "[ ] Find existing buffers" }
 				)
 				vim.keymap.set(
