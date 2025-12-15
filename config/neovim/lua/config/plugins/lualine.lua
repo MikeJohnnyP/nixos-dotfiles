@@ -77,7 +77,7 @@ return {
 			-- tabline = {
 			-- 	lualine_c = { "tab" },
 			-- },
-			-- extensions = { 'fugitive' },
+			extensions = { "nvim-tree", "nvim-dap-ui", "quickfix", "trouble" },
 		})
 	end,
 }

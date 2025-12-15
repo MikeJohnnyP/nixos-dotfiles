@@ -1,16 +1,15 @@
-return
-{
+return {
 	"folke/trouble.nvim",
 	opts = {}, -- for default options, refer to the configuration section for custom setup.
 	cmd = "Trouble",
 	keys = {
 		{
-			"<leader>tx",
+			"<leader>tp",
 			"<cmd>Trouble diagnostics toggle<cr>",
 			desc = "Diagnostics (Trouble)",
 		},
 		{
-			"<leader>tX",
+			"<leader>tP",
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},
@@ -34,5 +33,5 @@ return
 			"<cmd>Trouble qflist toggle<cr>",
 			desc = "Quickfix List (Trouble)",
 		},
-	}
+	},
 }
