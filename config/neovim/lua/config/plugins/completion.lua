@@ -3,64 +3,65 @@ return {
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		dependencies = {
-		  -- Add a collection of common snippets (including HTML)
-		  {
-			"rafamadriz/friendly-snippets",
-			config = function()
-			  require("luasnip.loaders.from_vscode").lazy_load()
-			  -- Optional: load custom snippets from a local directory
-			  require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+			-- Add a collection of common snippets (including HTML)
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+					-- Optional: load custom snippets from a local directory
+					require("luasnip.loaders.from_vscode").lazy_load({
+						paths = { vim.fn.stdpath("config") .. "/snippets" },
+					})
 
-			local ls = require("luasnip")
-			ls.filetype_extend("typescriptreact", { "html" })
-			ls.filetype_extend("javascriptreact", { "html" })
-			ls.filetype_extend("typescript", { "javascript" })
-			end,
-		  },
+					local ls = require("luasnip")
+					ls.filetype_extend("typescriptreact", { "html" })
+					ls.filetype_extend("javascriptreact", { "html" })
+					ls.filetype_extend("typescript", { "javascript" })
+				end,
+			},
 		},
 		opts = {
-		  history = true,
-		  delete_check_events = "TextChanged",
+			history = true,
+			delete_check_events = "TextChanged",
 		},
 	},
 	{
-		'saghen/blink.cmp',
+		"saghen/blink.cmp",
 		enabled = true,
 		dependencies = {
 			"xzbdmw/colorful-menu.nvim",
 		},
-		version = 'v0.*',
+		version = "v0.*",
 		opts = {
-			snippets = { preset = 'luasnip' },
+			snippets = { preset = "luasnip" },
 			keymap = {
-				preset = 'default',
-				['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-				['<C-e>'] = { 'hide', 'fallback' },
-				['<CR>'] = { 'accept', 'fallback' },
+				preset = "default",
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "show_documentation", "hide", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 
-				['<Tab>'] = { 'snippet_forward', 'fallback' },
-				['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-				['<Up>'] = { 'select_prev', 'fallback' },
-				['<Down>'] = { 'select_next', 'fallback' },
-				['<C-p>'] = { 'select_prev', 'fallback' },
-				['<C-n>'] = { 'select_next', 'fallback' },
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback" },
+				["<C-n>"] = { "select_next", "fallback" },
 
-				['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-				['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
 				-- 'prefix' will fuzzy match on the text before the cursor
 				-- 'full' will fuzzy match on the text before *and* after the cursor
 				-- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
-				keyword = { range = 'full' },
-
+				keyword = { range = "full" },
 			},
 			sources = {
-			  default = { 'lsp', 'path', 'snippets', 'buffer' },
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 			appearance = {
 				use_nvim_cmp_as_default = true,
-				nerd_font_variant = 'mono'
+				nerd_font_variant = "mono",
 			},
 
 			signature = {
@@ -82,7 +83,12 @@ return {
 				menu = {
 					draw = {
 						treesitter = { "lsp" },
-						columns = { { "kind_icon" }, { "label", gap = 1 }, { "label_description", gap = 1 } },
+						columns = {
+							{ "kind_icon" },
+							{ "label", gap = 1 },
+							{ "kind" },
+							{ "label_description", gap = 1 },
+						},
 						components = {
 							label = {
 								width = { fill = true, max = 60 },
@@ -114,8 +120,13 @@ return {
 					border = "rounded",
 					winblend = 0,
 				},
-			}
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = false,
+					},
+				},
+			},
 		},
-
-	}
+	},
 }

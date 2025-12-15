@@ -44,8 +44,8 @@ return {
 					-- load the ui-select extension
 					require("telescope").load_extension("ui-select"),
 					require("telescope").load_extension("dap"),
-					-- require("telescope").load_extension("treesitter"),
 					require("telescope").load_extension("projects"),
+					require("telescope").load_extension("noice"),
 				})
 
 				vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags)
@@ -74,6 +74,13 @@ return {
 					"<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal theme=ivy<cr>",
 					{ desc = "[ ] Find existing buffers" }
 				)
+				vim.keymap.set(
+					"n",
+					"<leader>fn",
+					"<cmd>Telescope noice initial_mode=normal<cr>",
+					{ desc = "[ ] Noice log" }
+				)
+
 				vim.keymap.set(
 					"n",
 					"<leader>fs",
