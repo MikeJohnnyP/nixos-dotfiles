@@ -26,6 +26,7 @@ return {
 					"bash",
 					"php",
 					"blade",
+					"vue",
 				},
 				auto_install = false,
 				highlight = {
