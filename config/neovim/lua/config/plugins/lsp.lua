@@ -19,6 +19,7 @@ return {
 				"yamlls",
 				"laravel_ls",
 				"phpactor",
+				"vue_ls",
 			},
 			automatic_installation = false,
 		},
@@ -28,6 +29,8 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			local vue_language_server = vim.fn.expand("$MASON")
+				.. "/packages/vue-language-server/node_modules/@vue/language-server"
 			-- lua
 			vim.lsp.config["lua_ls"] = {
 				cmd = { "lua-language-server" },
@@ -47,6 +50,16 @@ return {
 
 			vim.lsp.config["ts_ls"] = {
 				capabilities = capabilities,
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vue_language_server,
+							languages = { "vue" },
+						},
+					},
+				},
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			}
 
 			vim.lsp.config["yamlls"] = {
@@ -91,9 +104,9 @@ return {
 			}
 
 			-- laravel-ls
-			vim.lsp.config["laravel_ls"] = {
-				capabilities = capabilities,
-			}
+			-- vim.lsp.config["laravel_ls"] = {
+			-- 	capabilities = capabilities,
+			-- }
 
 			vim.diagnostic.config({
 				virtual_text = true,
