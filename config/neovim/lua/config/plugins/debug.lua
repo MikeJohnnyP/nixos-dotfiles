@@ -23,10 +23,7 @@ return {
 				handlers = {},
 				ensure_installed = {
 					"python",
-					"js-debug-adapter",
-					"chrome-debug-adapter",
-					"java-debug-adapter",
-					"java-test",
+					"php",
 				},
 			},
 		},
@@ -188,6 +185,33 @@ return {
 			-- 		},
 			-- })
 
+			dap.adapters.php = {
+				type = "executable",
+				command = "php-debug-adapter",
+			}
+
+			dap.configurations.php = {
+				{
+					type = "php",
+					request = "launch",
+					name = "Listen for Xdebug",
+					port = 9003,
+				},
+				-- For Docker or remote debugging, path mappings are crucial:
+				-- {
+				--     type = "php",
+				--     request = "launch",
+				--     name = "Listen for Xdebug (Docker)",
+				--     port = 9003,
+				--     pathMappings = {
+				--         ["/var/www/html"] = "${workspaceFolder}",
+				--     },
+				--     xdebugSettings = {
+				--         max_children = 128,
+				--     },
+				-- }
+			}
+
 			for _, adapterType in ipairs({ "node", "chrome", "msedge" }) do
 				local pwaType = "pwa-" .. adapterType
 
@@ -273,16 +297,6 @@ return {
 						url = enter_launch_url,
 						webRoot = "${workspaceFolder}",
 						sourceMaps = true,
-					},
-					{
-						type = "pwa-chrome",
-						request = "attach",
-						name = "Attach Chrome Windows (PIPE – WSL2 fix)",
-						port = 9222,
-						webRoot = "${workspaceFolder}",
-						sourceMaps = true,
-						-- Chỉ cần thêm 1 dòng duy nhất:
-						runtimeArgs = { "--remote-debugging-pipe" },
 					},
 					{
 						type = "pwa-msedge",

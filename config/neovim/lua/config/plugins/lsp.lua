@@ -11,7 +11,15 @@ return {
 		opts = {
 			auto_install = true,
 			-- manually install packages that do not exist in this list please
-			ensure_installed = { "ts_ls", "jdtls", "bashls", "tailwindcss", "yamlls" },
+			ensure_installed = {
+				"ts_ls",
+				"jdtls",
+				"bashls",
+				"tailwindcss",
+				"yamlls",
+				"laravel_ls",
+				"phpactor",
+			},
 			automatic_installation = false,
 		},
 	},
@@ -49,9 +57,9 @@ return {
 				capabilities = capabilities,
 			}
 
-			vim.lsp.config["html"] = {
-				capabilities = capabilities,
-			}
+			-- vim.lsp.config["html"] = {
+			-- 	capabilities = capabilities,
+			-- }
 
 			-- nix
 			vim.lsp.config["nil_ls"] = {
@@ -65,6 +73,25 @@ return {
 
 			-- bash
 			vim.lsp.config["bashls"] = {
+				capabilities = capabilities,
+			}
+
+			-- phpactor
+			vim.lsp.config["phpactor"] = {
+				capabilities = capabilities,
+				cmd = { "phpactor", "language-server" },
+				filetypes = { "php" },
+				root_markers = { ".git", "composer.json", ".phpactor.json", ".phpactor.yml" },
+				workspace_required = true,
+				init_options = {
+					["language_server_phpstan.enabled"] = false,
+					["language_server_psalm.enabled"] = false,
+					["completion_worse.completor.docblock.enabled"] = false,
+				},
+			}
+
+			-- laravel-ls
+			vim.lsp.config["laravel_ls"] = {
 				capabilities = capabilities,
 			}
 
@@ -83,11 +110,13 @@ return {
 				"ts_ls",
 				"zls",
 				"yamlls",
-				"html",
+				"phpactor",
+				-- "html",
 				"tailwindcss",
 				"nil_ls",
 				"pyright",
 				"bashls",
+				"laravel_ls",
 			})
 			-- lsp kepmap setting
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP hover" })
@@ -96,7 +125,7 @@ return {
 			-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			-- vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
-			vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "Code action" })
+			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 			vim.keymap.set("n", "gr", function()
 				require("telescope.builtin").lsp_references()
 			end, { desc = "LSP references" })

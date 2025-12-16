@@ -24,6 +24,8 @@ return {
 					"json",
 					"yaml",
 					"bash",
+					"php",
+					"blade",
 				},
 				auto_install = false,
 				highlight = {

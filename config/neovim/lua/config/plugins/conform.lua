@@ -21,6 +21,14 @@ return {
 				graphql = { "prettierd", "prettier", stop_after_first = true },
 				markdown = { "prettierd", "prettier", stop_after_first = true },
 				vue = { "prettierd", "prettier", stop_after_first = true },
+				php = { "php-cs-fixer", stop_after_first = true },
+			},
+			formatters = {
+				["php-cs-fixer"] = {
+					command = "php-cs-fixer",
+					args = { "fix", "--rules=@PSR12", "$FILENAME" }, -- Use your desired rule set
+					stdin = false,
+				},
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()

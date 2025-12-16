@@ -69,8 +69,6 @@
   users.users.mikejohnp = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -86,6 +84,8 @@
     xclip
     xsel
   ];
+
+  programs.nix-ld.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
