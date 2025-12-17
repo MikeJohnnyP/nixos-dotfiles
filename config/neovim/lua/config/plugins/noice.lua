@@ -3,6 +3,9 @@ return {
 		"folke/noice.nvim",
 		config = function()
 			require("noice").setup({
+				presets = {
+					command_palette = true,
+				},
 				-- add any options here
 				routes = {
 					{
