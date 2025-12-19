@@ -1,5 +1,8 @@
 return {
 	{
+		"github/copilot.vim", -- or zbirenbaum/copilot.lua
+	},
+	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
 			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
