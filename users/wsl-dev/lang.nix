@@ -32,6 +32,7 @@ in
     #composer php83
     pkgs.php83Packages.composer
     pkgs.php83Packages.php-cs-fixer
+    pkgs.nest-cli
   ];
 
   home.sessionVariables = {

@@ -8,6 +8,7 @@
 {
   imports = [
     ./custom.nix
+    ./../../modules/home-manager/mysql.nix
   ];
 
   networking.hostName = "nixos-btw";

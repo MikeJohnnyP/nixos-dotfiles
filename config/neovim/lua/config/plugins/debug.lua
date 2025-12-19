@@ -171,6 +171,9 @@ return {
 			require("nvim-dap-virtual-text").setup()
 			local dap = require("dap")
 			local dapui = require("dapui")
+			local runtime = vim.uv.fs_stat("bun.lock") and "bun" or "node"
+
+			dap.set_log_level("TRACE")
 
 			-- require("dap-vscode-js").setup({
 			-- 		debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
@@ -220,9 +223,10 @@ return {
 					host = "localhost",
 					port = "${port}",
 					executable = {
-						command = "node",
+						command = "js-debug-adapter",
 						args = {
-							vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+							-- "js-debug-adapter",
+							-- vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
 							"${port}",
 						},
 					},
@@ -242,6 +246,18 @@ return {
 					end
 				end
 			end
+
+			-- dap.adapters["pwa-node"] = {
+			-- 	type = "server",
+			-- 	host = "::1",
+			-- 	port = "${port}",
+			-- 	executable = {
+			-- 		command = "js-debug-adapter",
+			-- 		args = {
+			-- 			"${port}",
+			-- 		},
+			-- 	},
+			-- }
 
 			local enter_launch_url = function()
 				local co = coroutine.running()
@@ -280,6 +296,28 @@ return {
 						name = "Attach to process using Node.js (nvim-dap)",
 						processId = require("dap.utils").pick_process,
 						cwd = "${workspaceFolder}",
+					},
+					{
+						name = "NestJS: debug",
+						type = "pwa-node",
+						request = "launch",
+						trace = true,
+						cwd = vim.fn.getcwd(),
+						runtimeExecutable = runtime,
+						runtimeArgs = runtime == "bun" and { "run" } or nil,
+						program = "${workspaceFolder}/node_modules/@nestjs/cli/bin/nest.js",
+						args = {
+							"start",
+							"--debug",
+							"--watch",
+							"--preserveWatchOutput",
+						},
+						sourceMaps = true,
+						stopOnEntry = false,
+						console = "integratedTerminal",
+						protocol = "auto",
+						outDir = "${workspaceFolder}/dist",
+						restart = true,
 					},
 					-- requires ts-node to be installed globally or locally
 					{
