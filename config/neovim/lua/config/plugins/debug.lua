@@ -225,7 +225,6 @@ return {
 					executable = {
 						command = "js-debug-adapter",
 						args = {
-							-- "js-debug-adapter",
 							-- vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
 							"${port}",
 						},
@@ -246,18 +245,6 @@ return {
 					end
 				end
 			end
-
-			-- dap.adapters["pwa-node"] = {
-			-- 	type = "server",
-			-- 	host = "::1",
-			-- 	port = "${port}",
-			-- 	executable = {
-			-- 		command = "js-debug-adapter",
-			-- 		args = {
-			-- 			"${port}",
-			-- 		},
-			-- 	},
-			-- }
 
 			local enter_launch_url = function()
 				local co = coroutine.running()
@@ -318,6 +305,14 @@ return {
 						protocol = "auto",
 						outDir = "${workspaceFolder}/dist",
 						restart = true,
+						resolveSourceMapLocations = {
+							"${workspaceFolder}/**",
+							"!**/node_modules/**",
+						},
+						skipFiles = {
+							"<node_internals>/**",
+							"${workspaceFolder}/node_modules/**/*.js",
+						},
 					},
 					-- requires ts-node to be installed globally or locally
 					{
@@ -335,6 +330,12 @@ return {
 						url = enter_launch_url,
 						webRoot = "${workspaceFolder}",
 						sourceMaps = true,
+						resolveSourceMapLocations = {
+							"${workspaceFolder}/src/**",
+							"${workspaceFolder}/apps/**",
+							"!**/node_modules/**",
+						},
+						skipFiles = { "<node_internals>/**", "${workspaceFolder}/node_modules/**/*.js" },
 					},
 					{
 						type = "pwa-msedge",
