@@ -11,6 +11,7 @@ return {
 			local move = require("mini.move")
 			local files = require("mini.files")
 			local misc = require("mini.misc")
+			local starter = require("mini.starter")
 
 			icons.setup()
 			hipatterns.setup()
@@ -19,6 +20,7 @@ return {
 			move.setup()
 			files.setup()
 			misc.setup()
+			starter.setup()
 
 			vim.keymap.set("n", "\\", function()
 				require("mini.files").open()
