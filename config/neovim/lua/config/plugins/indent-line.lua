@@ -1,20 +1,15 @@
 return {
 	{ -- Add indentation guides even on blank lines
 		"lukas-reineke/indent-blankline.nvim",
-		enabled = false,
+		enabled = true,
 		main = "ibl",
 		---@module "ibl"
 		---@type ibl.config
-		opts = {
-			enabled = true,
-			show_start = true,
-			show_end = false,
-			injected_languages = false,
-			highlight = { "Function", "Label" },
-			priority = 500,
-		},
+		opts = {},
 		config = function()
-			require('ibl').setup()
+			require("ibl").setup({
+				scope = { enabled = true, show_start = false, show_end = false },
+			})
 		end,
 	},
 }

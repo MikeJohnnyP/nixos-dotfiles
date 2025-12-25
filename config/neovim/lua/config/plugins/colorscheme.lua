@@ -265,7 +265,7 @@ return {
 				transparent = true, -- don't set background
 				-- disable bold/italic globally in `style`
 				bold = true,
-				italic = true,
+				italic = false,
 				style = {
 					-- "none" is the same thing as default. But "italic" and "bold" are also valid options
 					boolean = "bold",

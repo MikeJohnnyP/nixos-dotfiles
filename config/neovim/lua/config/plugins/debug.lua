@@ -58,10 +58,6 @@ return {
 				version = "1.x",
 				build = "echo 'Skip build – using prebuilt'",
 			},
-			-- {
-			-- 	"Joakker/lua-json5",
-			-- 	build = "./install.sh",
-			-- },
 		},
 		keys = {
 			-- Basic debugging keymaps, feel free to change to your liking!
@@ -150,43 +146,14 @@ return {
 				end,
 				desc = "Debug: See last session result.",
 			},
-
-			-- {
-			-- 	"<leader>da",
-			-- 	function()
-			-- 	  if vim.fn.filereadable(".vscode/launch.json") then
-			-- 		local dap_vscode = require("dap.ext.vscode")
-			-- 		dap_vscode.load_launchjs(nil, {
-			-- 		  ["pwa-node"] = js_based_languages,
-			-- 		  ["chrome"] = js_based_languages,
-			-- 		  ["pwa-chrome"] = js_based_languages,
-			-- 		})
-			-- 	  end
-			-- 	  require("dap").continue()
-			-- 	end,
-			-- 	desc = "Run with Args",
-			-- },
 		},
 		config = function()
-			require("nvim-dap-virtual-text").setup()
+			-- require("nvim-dap-virtual-text").setup()
 			local dap = require("dap")
 			local dapui = require("dapui")
 			local runtime = vim.uv.fs_stat("bun.lock") and "bun" or "node"
 
 			dap.set_log_level("TRACE")
-
-			-- require("dap-vscode-js").setup({
-			-- 		debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
-			-- 		debugger_cmd = { "node", vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/out/src/vsDebugServer.js" },
-			-- 		adapters = {
-			-- 			"chrome",
-			-- 			"pwa-chrome",
-			-- 			"pwa-node",
-			-- 			"pwa-msedge",
-			-- 			"pwa-extensionHost",
-			-- 			"node-terminal"
-			-- 		},
-			-- })
 
 			dap.adapters.php = {
 				type = "executable",
@@ -345,91 +312,18 @@ return {
 						webRoot = "${workspaceFolder}",
 						sourceMaps = true,
 					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach debugger to existing Vite process",
+						processId = require("dap.utils").pick_process,
+						sourceMaps = true,
+						resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+						cwd = "${workspaceFolder}/src",
+						skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+					},
 				}
 			end
-
-			-- dap.configurations.java = {
-			-- 	{
-			-- 		type = "java",
-			-- 		request = "attach",
-			-- 		name = "Attach to process",
-			-- 		hostName = "localhost",
-			-- 		processId = require("dap.utils").pick_process,
-			-- 	},
-			-- 	{
-			-- 		name = "Attach Spring Boot",
-			-- 		type = "java",
-			-- 		request = "attach",
-			-- 		hostName = "127.0.0.1",
-			-- 		port = 8000,
-			-- 	},
-			-- }
-
-			-- for _, language in ipairs({ "typescript", "javascript", "svelte", "typescriptreact", "vue" }) do
-			-- 	require("dap").configurations[language] = {
-			-- 		  -- Debug single nodejs files
-			-- 		  {
-			-- 			type = "pwa-node",
-			-- 			request = "launch",
-			-- 			name = "Launch file",
-			-- 			program = "${file}",
-			-- 			cwd = vim.fn.getcwd(),
-			-- 			sourceMaps = true,
-			-- 		  },
-			-- 		   -- Debug nodejs processes (make sure to add --inspect when you run the process)
-			-- 		  {
-			-- 			type = "pwa-node",
-			-- 			request = "attach",
-			-- 			name = "Attach",
-			-- 			processId = require("dap.utils").pick_process,
-			-- 			cwd = vim.fn.getcwd(),
-			-- 			sourceMaps = true,
-			-- 		  },
-			--
-			-- 		  -- Debug web applications (client side)
-			-- 		  {
-			-- 			type = "pwa-chrome",
-			-- 			request = "launch",
-			-- 			name = "Launch & Debug Chrome",
-			-- 			url = function()
-			-- 			  local co = coroutine.running()
-			-- 			  return coroutine.create(function()
-			-- 				vim.ui.input({
-			-- 				  prompt = "Enter URL: ",
-			-- 				  default = "http://localhost:3000",
-			-- 				}, function(url)
-			-- 				  if url == nil or url == "" then
-			-- 					return
-			-- 				  else
-			-- 					coroutine.resume(co, url)
-			-- 				  end
-			-- 				end)
-			-- 			  end)
-			-- 			end,
-			-- 			webRoot = vim.fn.getcwd(),
-			-- 			protocol = "inspector",
-			-- 			sourceMaps = true,
-			-- 			userDataDir = false,
-			-- 		  },
-			-- 		-- only if language is javascript, offer this debug action
-			-- 		language == "javascript" and {
-			-- 			-- use nvim-dap-vscode-js's pwa-node debug adapter
-			-- 			type = "pwa-node",
-			-- 			-- launch a new process to attach the debugger to
-			-- 			request = "launch",
-			-- 			-- name of the debug action you have to select for this config
-			-- 			name = "Launch file in new node process",
-			-- 			-- launch current file
-			-- 			program = "${file}",
-			-- 			cwd = "${workspaceFolder}",
-			-- 		} or nil,
-			-- {
-			-- 	name = "----- ↓ launch.json configs ↓ -----",
-			-- 	type = "",
-			-- 	request = "launch",
-			-- },
-			-- }
-			-- end
 
 			dap.configurations.java = {
 				{
@@ -543,9 +437,9 @@ return {
 				vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
 			end
 
-			dap.listeners.after.event_initialized["dapui_config"] = function()
-				dapui.open({ reset = true })
-			end
+			-- dap.listeners.after.event_initialized["dapui_config"] = function()
+			-- 	dapui.open({ reset = true })
+			-- end
 			dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 			dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
