@@ -34,12 +34,12 @@
     interop.includePath = true;
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
-
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.videoDrivers = [ "modesetting" ];
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.startx.enable = true;
+  #
+  # services.xserver.windowManager.i3.enable = true;
+  # services.xserver.displayManager.defaultSession = "none+i3";
+  # services.xserver.videoDrivers = [ "modesetting" ];
 
   services.displayManager.autoLogin = {
     enable = true;
@@ -100,6 +100,5 @@
   environment.sessionVariables.LD_LIBRARY_PATH = [ "/run/opengl-driver/lib/" ];
   environment.sessionVariables.GALLIUM_DRIVER = "d3d12";
   environment.sessionVariables.MESA_D3D12_DEFAULT_ADAPTER = 0;
-  environment.sessionVariables.BROWSER = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe";
   system.stateVersion = "25.05";
 }

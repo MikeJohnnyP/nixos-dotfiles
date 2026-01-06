@@ -5,9 +5,6 @@
     ./../../modules/home-manager/neovim.nix
     ./../../modules/home-manager/zsh.nix
     ./../../modules/home-manager/tmux.nix
-    ./../../modules/home-manager/i3-wm.nix
-    ./../../modules/home-manager/alacritty.nix
-    ./vnc-config.nix
     ./lang.nix
   ];
 
@@ -23,7 +20,6 @@
   };
   home.stateVersion = "25.05";
 
-  within.alacritty.enable = true;
   within.zsh.enable = true;
   within.neovim.enable = true;
 
@@ -35,7 +31,6 @@
     fastfetch
     feh
     lazygit
-    nerd-fonts.jetbrains-mono
     unzip
     opencode
   ];

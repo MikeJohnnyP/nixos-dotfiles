@@ -16,22 +16,22 @@ in
     #gradle
     pkgs.gradle
     # php83
-    (pkgs.php83.buildEnv {
-      extensions = (
-        { enabled, all }:
-        enabled
-        ++ (with all; [
-          xdebug
-        ])
-      );
-      extraConfig = ''
-        xdebug.mode=debug
-        xdebug.start_with_request=yes
-      '';
-    })
-    #composer php83
-    pkgs.php83Packages.composer
-    pkgs.php83Packages.php-cs-fixer
+    # (pkgs.php83.buildEnv {
+    #   extensions = (
+    #     { enabled, all }:
+    #     enabled
+    #     ++ (with all; [
+    #       xdebug
+    #     ])
+    #   );
+    #   extraConfig = ''
+    #     xdebug.mode=debug
+    #     xdebug.start_with_request=yes
+    #   '';
+    # })
+    # #composer php83
+    # pkgs.php83Packages.composer
+    # pkgs.php83Packages.php-cs-fixer
     pkgs.nest-cli
   ];
 
