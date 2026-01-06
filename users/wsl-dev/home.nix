@@ -36,8 +36,8 @@
     feh
     lazygit
     nerd-fonts.jetbrains-mono
-    google-chrome
     unzip
+    opencode
   ];
 
   home.sessionVariables = {

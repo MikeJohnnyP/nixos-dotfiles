@@ -44,6 +44,7 @@ in
       pkgs.lua51Packages.lua
       pkgs.lua51Packages.luarocks
       pkgs.vscode-langservers-extracted
+      pkgs.ccls
       # pkgs.asm-lsp
     ];
     home.file = {

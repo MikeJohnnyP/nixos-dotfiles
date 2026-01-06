@@ -24,6 +24,10 @@ return {
 				ensure_installed = {
 					"python",
 					"php",
+					"codelldb",
+					"javadbg",
+					"javatest",
+					"js",
 				},
 			},
 		},
@@ -369,10 +373,7 @@ return {
 
 			dap.adapters.codelldb = {
 				type = "executable",
-				command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
-
-				-- On windows you may have to uncomment this:
-				detached = false,
+				command = "codelldb",
 			}
 
 			dap.configurations.cpp = {

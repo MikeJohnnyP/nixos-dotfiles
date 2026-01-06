@@ -108,6 +108,22 @@ return {
 			-- 	capabilities = capabilities,
 			-- }
 
+			-- vim.lsp.config["clangd"] = {
+			-- 	capabilities = capabilities,
+			-- 	opts = {
+			-- 		servers = {
+			-- 			clangd = {
+			-- 				mason = false,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- }
+
+			vim.lsp.config["ccls"] = {
+				capabilities = capabilities,
+				cmd = { "ccls" },
+			}
+
 			vim.diagnostic.config({
 				virtual_text = true,
 				underline = true,
@@ -130,6 +146,7 @@ return {
 				"pyright",
 				"bashls",
 				"laravel_ls",
+				"ccls",
 			})
 			-- lsp kepmap setting
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP hover" })
