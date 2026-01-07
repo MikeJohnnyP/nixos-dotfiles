@@ -1,19 +1,3 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
--- local js_based_languages = {
---   "typescript",
---   "javascript",
---   "typescriptreact",
---   "javascriptreact",
---   "vue",
--- }
-
 return {
 	{
 		{
@@ -53,18 +37,8 @@ return {
 
 			-- Python debugger
 			"mfussenegger/nvim-dap-python",
-
-			-- javascript, typescript framework debug
-			"mxsdev/nvim-dap-vscode-js",
-			-- build debugger from source
-			{
-				"microsoft/vscode-js-debug",
-				version = "1.x",
-				build = "echo 'Skip build – using prebuilt'",
-			},
 		},
 		keys = {
-			-- Basic debugging keymaps, feel free to change to your liking!
 			{
 				"<F5>",
 				function()
