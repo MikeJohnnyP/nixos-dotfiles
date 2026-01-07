@@ -111,10 +111,6 @@ return {
 					end
 					require("telescope.builtin").live_grep({ search_dirs = { node.absolute_path } })
 				end)
-
-				vim.keymap.set("n", "<leader>;;", function()
-					require("telescope").extensions.projects.projects({})
-				end, { desc = "Find Project" })
 			end,
 		},
 	},
