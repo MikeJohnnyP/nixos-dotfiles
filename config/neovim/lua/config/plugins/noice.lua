@@ -30,17 +30,10 @@ return {
 					},
 				},
 			})
-			require("notify").setup({
-				timeout = 3000,
-				background_colour = "#000000",
-				render = "compact",
-				stages = "fade",
-			})
 		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 	},
 }

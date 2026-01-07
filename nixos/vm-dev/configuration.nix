@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ 
-      /etc/nixos/hardware-configuration.nix
-      ./custom.nix
-    ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    ./custom.nix
+  ];
 
   # fix ratio with vm
   virtualisation.vmware.guest = {
@@ -32,7 +36,6 @@
     '';
   };
 
-
   services.xserver = {
     enable = true;
     xkb.layout = "us";
@@ -58,7 +61,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   users.users.mikejohnp = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -69,24 +71,27 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-   vim
-   wget
-   tree
-   gh
-   gcc
-   home-manager
-   open-vm-tools
-   git
-   mesa-demos
-   xclip
-   xsel
- ];
- 
- nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    lsof
+    vim
+    wget
+    tree
+    gh
+    gcc
+    home-manager
+    open-vm-tools
+    git
+    mesa-demos
+    xclip
+    xsel
+  ];
 
- services.openssh.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
- system.stateVersion = "25.05";
+  services.openssh.enable = true;
+
+  system.stateVersion = "25.05";
 
 }
-

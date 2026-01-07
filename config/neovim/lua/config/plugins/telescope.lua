@@ -11,7 +11,6 @@ return {
 					},
 				},
 			},
-			-- { "nvim-telescope/telescope-treesitter.nvim" },
 		},
 	},
 	{
@@ -77,12 +76,6 @@ return {
 					"<S-b>",
 					"<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal theme=ivy<cr>",
 					{ desc = "[ ] Find existing buffers" }
-				)
-				vim.keymap.set(
-					"n",
-					"<leader>fn",
-					"<cmd>Telescope noice initial_mode=normal<cr>",
-					{ desc = "[ ] Noice log" }
 				)
 
 				vim.keymap.set(

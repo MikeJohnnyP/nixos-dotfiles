@@ -74,6 +74,7 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    lsof
     vim
     wget
     tree

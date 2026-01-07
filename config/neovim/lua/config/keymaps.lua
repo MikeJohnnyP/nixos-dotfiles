@@ -46,9 +46,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- BuffercopeFuzzyCommandSearch)
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>qa", ":lua MiniBufremove.delete()<CR>", opts) -- close buffer
-vim.keymap.set("n", "<leader>qq", ":lua MiniBufremove.unshow_in_window()<CR>", opts) -- close buffer
---vim.keymap.set('n', '<leader>bn', '<cmd> enew <CR>', opts) -- new buffer
 
 -- Save all
 vim.keymap.set("n", "<leader>w", ":wa<CR>", opts)
