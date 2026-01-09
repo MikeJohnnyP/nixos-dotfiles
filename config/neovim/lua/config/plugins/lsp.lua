@@ -148,8 +148,25 @@ return {
 				"laravel_ls",
 				"ccls",
 			})
+			-- LSP floating windows config (Neovim 0.11+)
+			local float_opts = {
+				border = "rounded",
+				winhighlight = "Normal:Normal,NormalFloat:Normal,FloatBorder:FloatBorder",
+			}
+
+			-- Diagnostic float
+			vim.diagnostic.config({
+				virtual_text = true,
+				underline = true,
+				float = {
+					border = "rounded",
+					winhighlight = "Normal:Normal,NormalFloat:Normal,FloatBorder:FloatBorder",
+				},
+			})
 			-- lsp kepmap setting
-			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP hover" })
+			vim.keymap.set("n", "gh", function()
+				vim.lsp.buf.hover(float_opts)
+			end, { desc = "LSP hover" })
 			-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 			-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})

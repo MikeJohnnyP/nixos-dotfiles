@@ -6,6 +6,15 @@ return {
 				presets = {
 					command_palette = true,
 				},
+				lsp = {
+					override = {
+						["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+						["vim.lsp.util.stylize_markdown"] = false,
+						["cmp.entry.get_documentation"] = false, -- if using nvim-cmp
+					},
+					hover = { enabled = false },
+					signature = { enabled = false },
+				},
 				-- add any options here
 				routes = {
 					{
