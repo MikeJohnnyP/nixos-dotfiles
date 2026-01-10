@@ -71,12 +71,15 @@ return {
 					require("telescope.builtin").diagnostics,
 					{ desc = "[S]earch [D]iagnostics" }
 				)
-				vim.keymap.set(
-					"n",
-					"<S-b>",
-					"<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal theme=ivy<cr>",
-					{ desc = "[ ] Find existing buffers" }
-				)
+				vim.keymap.set("n", "<S-b>", function()
+					require("telescope.builtin").buffers({
+						sort_mru = true,
+						sort_lastused = true,
+						initial_mode = "normal",
+						theme = "ivy",
+						cwd_only = true,
+					})
+				end, { desc = "Find buffers in current tab" })
 
 				vim.keymap.set(
 					"n",

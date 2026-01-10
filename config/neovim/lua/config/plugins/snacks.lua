@@ -117,6 +117,9 @@ return {
 			only_scope = false,
 			only_current = false,
 			hl = "SnacksIndent",
+			animate = {
+				enabled = false,
+			},
 		},
 		scope = { enabled = false },
 		input = { enabled = false },

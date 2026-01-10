@@ -74,9 +74,26 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			-- tabline = {
-			-- 	lualine_c = { "tab" },
-			-- },
+			tabline = {
+				lualine_a = {
+					{
+						"tabs",
+						mode = 1,
+						max_length = vim.o.columns,
+						fmt = function(_, context)
+							local tabcwd = vim.fn.getcwd(-1, context.tabnr)
+							local folder = vim.fn.fnamemodify(tabcwd, ":t")
+							return folder
+						end,
+					},
+				},
+				lualine_z = {
+					{
+						"datetime",
+						style = " %H:%M | %d/%m/%Y",
+					},
+				},
+			},
 			extensions = { "nvim-tree", "nvim-dap-ui", "quickfix", "trouble" },
 		})
 	end,

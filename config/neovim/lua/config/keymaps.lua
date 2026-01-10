@@ -89,6 +89,12 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -5<cr>", { desc = "Decrease Window 
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>", { desc = "Increase Window Width" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>", { desc = "Decrease Window Width" })
 
+-- Toggle line number
+vim.keymap.set("n", "<leader>an", function()
+	vim.wo.number = not vim.wo.number
+	vim.wo.relativenumber = not vim.wo.relativenumber
+end, { desc = "Toggle line number" })
+
 vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
 	expr = true,
 	replace_keycodes = false,
