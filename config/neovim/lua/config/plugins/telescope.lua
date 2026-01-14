@@ -48,7 +48,7 @@ return {
 					-- load the ui-select extension
 					require("telescope").load_extension("ui-select"),
 					require("telescope").load_extension("dap"),
-					require("telescope").load_extension("noice"),
+					-- require("telescope").load_extension("noice"),
 				})
 
 				vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags)

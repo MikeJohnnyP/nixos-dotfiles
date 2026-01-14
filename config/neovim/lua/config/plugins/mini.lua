@@ -57,10 +57,10 @@ return {
 			end, { desc = "Erase Whitespace" })
 
 			-- File explorer mappings
-			vim.keymap.set("n", "\\\\", function()
+			vim.keymap.set("n", "\\", function()
 				files.open()
 			end, { desc = "Toggle mini file explorer" }) -- toggle file explorer
-			vim.keymap.set("n", "\\", function()
+			vim.keymap.set("n", "\\\\", function()
 				files.open(vim.api.nvim_buf_get_name(0), false)
 				files.reveal_cwd()
 			end, { desc = "Toggle into currently opened file" })
