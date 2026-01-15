@@ -4,19 +4,63 @@ return {
 		enabled = true,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			-- Tokyonight colors for transparent theme
+			local colors = {
+				blue = "#7aa2f7",
+				green = "#9ece6a",
+				magenta = "#bb9af7",
+				red = "#f7768e",
+				yellow = "#e0af68",
+				cyan = "#7dcfff",
+				fg = "#c0caf5",
+				gray = "#565f89",
+			}
+
+			-- Custom transparent theme
+			local transparent_theme = {
+				normal = {
+					a = { fg = colors.blue, bg = "NONE", gui = "bold" },
+					b = { fg = colors.cyan, bg = "NONE" },
+					c = { fg = colors.fg, bg = "NONE" },
+				},
+				insert = {
+					a = { fg = colors.green, bg = "NONE", gui = "bold" },
+					b = { fg = colors.cyan, bg = "NONE" },
+					c = { fg = colors.fg, bg = "NONE" },
+				},
+				visual = {
+					a = { fg = colors.magenta, bg = "NONE", gui = "bold" },
+					b = { fg = colors.cyan, bg = "NONE" },
+					c = { fg = colors.fg, bg = "NONE" },
+				},
+				replace = {
+					a = { fg = colors.red, bg = "NONE", gui = "bold" },
+					b = { fg = colors.cyan, bg = "NONE" },
+					c = { fg = colors.fg, bg = "NONE" },
+				},
+				command = {
+					a = { fg = colors.yellow, bg = "NONE", gui = "bold" },
+					b = { fg = colors.cyan, bg = "NONE" },
+					c = { fg = colors.fg, bg = "NONE" },
+				},
+				inactive = {
+					a = { fg = colors.gray, bg = "NONE" },
+					b = { fg = colors.gray, bg = "NONE" },
+					c = { fg = colors.gray, bg = "NONE" },
+				},
+			}
+
 			local mode = {
 				"mode",
 				fmt = function(str)
-					return " " .. str
-					-- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
-					-- return str
+					return " " .. str
 				end,
 			}
 
 			local filename = {
 				"filename",
-				file_status = true, -- displays file status (readonly status, modified status)
-				path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+				file_status = true,
+				path = 0,
 			}
 
 			local hide_in_width = function()
@@ -27,28 +71,27 @@ return {
 				"diagnostics",
 				sources = { "nvim_diagnostic" },
 				sections = { "error", "warn" },
-				symbols = { error = " ", warn = " ", info = " ", hint = " " },
+				symbols = { error = " ", warn = " ", info = " ", hint = " " },
 				colored = true,
 				update_in_insert = true,
 				always_visible = true,
-				-- cond = hide_in_width,
 			}
 
 			local diff = {
 				"diff",
 				colored = true,
-				symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+				symbols = { added = " ", modified = " ", removed = " " },
 				cond = hide_in_width,
 			}
+
+			-- Make statusline background fully transparent
+			vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "auto", -- Set theme based on environment variable
-					-- Some useful glyphs:
-					-- https://www.nerdfonts.com/cheat-sheet
-					--        
-					-- section_separators = { left = "", right = "" },
-					-- component_separators = { left = "", right = "" },
+					theme = transparent_theme,
 					component_separators = "│",
 					section_separators = "",
 					disabled_filetypes = { "alpha", "neo-tree" },
@@ -75,26 +118,6 @@ return {
 					lualine_y = {},
 					lualine_z = {},
 				},
-				-- tabline = {
-				-- 	lualine_a = {
-				-- 		{
-				-- 			"tabs",
-				-- 			mode = 1,
-				-- 			max_length = vim.o.columns,
-				-- 			fmt = function(_, context)
-				-- 				local tabcwd = vim.fn.getcwd(-1, context.tabnr)
-				-- 				local folder = vim.fn.fnamemodify(tabcwd, ":t")
-				-- 				return folder
-				-- 			end,
-				-- 		},
-				-- 	},
-				-- 	lualine_z = {
-				-- 		{
-				-- 			"datetime",
-				-- 			style = " %H:%M | %d/%m/%Y",
-				-- 		},
-				-- 	},
-				-- },
 				extensions = { "nvim-tree", "nvim-dap-ui", "quickfix", "trouble" },
 			})
 		end,
