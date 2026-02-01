@@ -1,27 +1,42 @@
 return {
 	{
 		"folke/tokyonight.nvim",
+		enabled = false,
+		init = function()
+			-- vim.cmd.colorscheme("tokyonight-night")
+			-- vim.cmd.hi("Comment gui=none")
+		end,
+		opts = {
+			transparent = false, -- Enable this to disable setting the background color
+			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+			dim_inactive = false, -- dims inactive windows
+			lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
+		},
+		cache = true, -- When set to true, the theme will be cached for better performance
+	},
+	{
+		"neanias/everforest-nvim",
+		version = false,
 		lazy = false,
 		init = function()
-			vim.o.background = "dark"
+			vim.cmd.colorscheme("everforest")
 		end,
-		priority = 1000,
-		opts = {
-			style = "night",
-			transparent = false,
-			lualine_bold = true,
-		},
+		priority = 1000, -- make sure to load this before all the other start plugins
+		-- Optional; default configuration will be used if setup isn't called.
 		config = function()
-			vim.cmd.colorscheme("tokyonight-night")
+			require("everforest").setup({
+				-- Your config here
+			})
 		end,
 	},
 	-- {
 	-- 	"vague-theme/vague.nvim",
-	-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	-- 	lazy = false,  -- make sure we load this during startup if it is your main colorscheme
 	-- 	priority = 1000, -- make sure to load this before all the other plugins
+	-- 	enabled = false,
 	-- 	config = function()
 	-- 		require("vague").setup({
-	-- 			transparent = true, -- don't set background
+	-- 			transparent = false, -- don't set background
 	-- 			-- disable bold/italic globally in `style`
 	-- 			bold = true,
 	-- 			italic = false,
@@ -109,7 +124,6 @@ return {
 	-- 			},
 	-- 		})
 	-- 		-- NOTE: you do not need to call setup if you don't want to.
-	-- 		vim.cmd("colorscheme vague")
 	-- 	end,
 	-- },
 }

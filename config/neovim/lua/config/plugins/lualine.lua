@@ -91,14 +91,14 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = transparent_theme,
+					theme = "auto",
 					component_separators = "│",
 					section_separators = "",
 					disabled_filetypes = { "alpha", "neo-tree" },
 					always_divide_middle = true,
 				},
 				sections = {
-					lualine_a = { mode },
+					lualine_a = { "mode" },
 					lualine_b = { "branch" },
 					lualine_c = { filename },
 					lualine_x = {
